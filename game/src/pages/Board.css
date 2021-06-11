@@ -1,0 +1,28 @@
+.board-window-wrapper {
+  height: 100vh;
+  background-image: linear-gradient(var(--accent-color), rgb(15, 195, 219));
+  color: var(--white-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaders-board {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.leaders-board__heading {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaders-board__leaders {
+  height: 70%;
+  display: flex;
+  justify-content: center;
+}

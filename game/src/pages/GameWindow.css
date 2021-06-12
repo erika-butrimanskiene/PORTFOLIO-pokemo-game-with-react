@@ -6,31 +6,33 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  align-content: center;
 }
 
 .game-window-heading {
+  padding: 15px 0px;
   width: 100%;
   text-align: center;
 }
 
 .game-window {
-  margin: 30px 0px;
   width: 80%;
-  padding: 20px 40px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 40px;
+  background-color: rgba(255, 255, 255);
+  border-radius: 20px;
 }
 
 .game-window__links {
+  padding: 20px 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
 .game-window__link-container {
-  width: 200px;
+  width: calc(50% - 20px);
   height: 100px;
-  margin: 20px;
+  margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,39 +43,30 @@
   height: 100%;
   border-radius: 15px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--second-color);
+  background-color: rgb(247, 189, 1);
   color: white;
-  font-size: 1.5em;
+  font-size: 1em;
   text-decoration: none;
 }
 
+.game-window__link span {
+  padding-top: 5px;
+}
+
 .game-window__logout {
-  width: 200px;
-  height: 100px;
+  width: 150px;
+  height: 50px;
   border-radius: 15px;
-  margin: 20px;
+  margin: 15px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: yellowgreen;
+  background-color: var(--accent-color);
   color: white;
   font-size: 1.5em;
-}
-
-.game-window__player {
-  margin: 20px;
-  padding: 20px;
-  color: var(--dark-gray);
-  display: flex;
-}
-
-.game-window__player-avatar {
-  height: 150px;
-  width: 150px;
-  background-position: center;
-  background-size: cover;
 }
 
 @media screen and (min-width: 768px) {
@@ -86,18 +79,37 @@
     width: 80%;
     display: flex;
   }
+
+  .game-window-heading {
+    padding: 35px 0px;
+  }
+
   .game-window__link-container {
+    width: calc(50% - 40px);
     margin: 0px 20px;
   }
 
-  .game-window__player {
-    width: 40%;
-    border-right: 4px solid var(--accent-color);
+  .game-window__links {
+    padding: 70px 10px 50px 10px;
+    height: 100%;
+    width: 50%;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .game-window__links {
+    padding: 60px 60px 30px 60px;
+    width: 60%;
   }
 
-  .game-window__links {
-    height: 100%;
-    width: 60%;
-    align-items: center;
+  .game-window__link-container {
+    width: calc(50% - 60px);
+    height: 130px;
+    margin: 10px 30px;
+  }
+
+  .game-window__link {
+    font-size: 1.2em;
   }
 }

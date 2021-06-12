@@ -8,7 +8,7 @@ function Board() {
       <div className='board-window-wrapper'>
         <div className='leaders-board'>
           <div className='leaders-board__heading'>
-            <h2>LEADERS BOARD</h2>
+            <h1>LEADERS BOARD</h1>
           </div>
 
           <div className='leaders-board__leaders'>

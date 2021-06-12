@@ -1,14 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RiCoinsFill } from 'react-icons/ri';
+
+import './Player.css';
 
 function Player({ image, username, gold }) {
   return (
     <div className='player'>
-      <div>{image}</div>
-      <h3>{username}</h3>
-      <p>amount of {gold}</p>
-      <div>
-        <button>
+      <div
+        className='player__avatar'
+        style={{
+          backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+        }}
+      ></div>
+      <div className='player__username'>
+        <h3>{username}</h3>
+      </div>
+
+      <div className='player__gold-more'>
+        <p className='player__gold'>
+          <span>{gold}</span> <RiCoinsFill size={30} color={'gold'} />
+        </p>
+
+        <button className='player__seemore'>
           <Link to={'/board/' + username}>See more</Link>
         </button>
       </div>

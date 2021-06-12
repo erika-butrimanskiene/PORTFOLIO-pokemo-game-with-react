@@ -2,8 +2,15 @@ import React, { useContext } from 'react';
 import { UserInfoContext } from '../App';
 import { AuthenticationContext } from '../App';
 import { Link } from 'react-router-dom';
+import { GiBattleGear } from 'react-icons/gi';
+import { GiBattleMech } from 'react-icons/gi';
+import { AiOutlineShop } from 'react-icons/ai';
+import { BsClipboardData } from 'react-icons/bs';
 
 import './GameWindow.css';
+
+//PAGES
+import LoggedInUser from '../components/LoggedInUser';
 
 function GameWindow() {
   //CONTEXTS
@@ -22,46 +29,41 @@ function GameWindow() {
   return (
     <main>
       <div className='game-window-wrapper'>
-        <h1 className='game-window-heading'>GAME WINDOW</h1>
+        <h1 className='game-window-heading'>LET'S START!</h1>
         <div className='game-window'>
-          <div className='game-window__player'>
-            <h3 className='game-window__player-username'>
-              {user.userInfo.username}
-            </h3>
-            <div
-              className='game-window__player-avatar'
-              style={{
-                backgroundImage: `url(http://localhost:5000/uploads/${user.userInfo.image})`,
-              }}
-            ></div>
-            <div>
-              <p>{user.userInfo.gold}</p>
-              <p>{user.userInfo.health}</p>
-            </div>
-          </div>
+          <LoggedInUser
+            image={user.userInfo.image}
+            username={user.userInfo.username}
+            health={user.userInfo.health}
+            gold={user.userInfo.gold}
+          />
 
           <div className='game-window__links'>
             <div className='game-window__link-container'>
               <Link className='game-window__link' to='/shop'>
-                SHOP
+                <AiOutlineShop size={55} />
+                <span>SHOP</span>
               </Link>
             </div>
 
             <div className='game-window__link-container'>
               <Link className='game-window__link' to='/inventory'>
-                INVENTORY
+                <GiBattleGear size={55} />
+                <span>INVENTORY</span>
               </Link>
             </div>
 
             <div className='game-window__link-container'>
               <Link className='game-window__link' to='/arena'>
-                ARENA
+                <GiBattleMech size={55} />
+                <span>ARENA</span>
               </Link>
             </div>
 
             <div className='game-window__link-container'>
               <Link className='game-window__link' to='/board'>
-                BOARD
+                <BsClipboardData size={50} />
+                <span>BOARD</span>
               </Link>
             </div>
 

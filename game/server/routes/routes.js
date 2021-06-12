@@ -21,5 +21,8 @@ router.post(
 
 router.get('/user', UserMiddleware.authenticate, UserController.getUser);
 
+router.get('/users', UserController.getUsers);
+router.get('/users/:username', UserController.getUserByUsername);
+
 // Export
 module.exports = router;

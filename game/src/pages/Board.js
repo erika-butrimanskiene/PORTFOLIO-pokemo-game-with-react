@@ -1,6 +1,6 @@
 import React from 'react';
 import './Board.css';
-import Player from '../components/Player';
+import PlayersBoard from '../components/PlayersBoard';
 
 function Board() {
   return (
@@ -12,7 +12,7 @@ function Board() {
           </div>
 
           <div className='leaders-board__leaders'>
-            <Player />
+            <PlayersBoard />
           </div>
         </div>
       </div>

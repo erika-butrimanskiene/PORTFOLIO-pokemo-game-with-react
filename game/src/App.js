@@ -9,6 +9,7 @@ import Inventory from './pages/Inventory';
 import Arena from './pages/Arena';
 import Board from './pages/Board';
 import ProtectedRoute from './pages/ProtectedRoute';
+import PlayerDetail from './pages/PlayerDetail';
 
 import './App.css';
 
@@ -70,6 +71,9 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute exact path='/board'>
                 <Board />
+              </ProtectedRoute>
+              <ProtectedRoute exact path='/board/:username'>
+                <PlayerDetail />
               </ProtectedRoute>
             </Switch>
           </Router>

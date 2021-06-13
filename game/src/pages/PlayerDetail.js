@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import './PlayerDetail.css';
+
 function PlayerDetail() {
   //STATES
   //--player
@@ -27,17 +29,23 @@ function PlayerDetail() {
     };
 
     getUserByUsername();
-  }, []);
+  }, [username]);
 
   return (
     <main>
-      <div>
-        <div>{player.image}</div>
-        <h3>{player.username}</h3>
-        <p>{player.health}</p>
-        <p>{player.gold}</p>
-        {player.inventory &&
-          player.inventory.map((inventoryItem) => <p>{inventoryItem}</p>)}
+      <div className='player-detail-window-wrapper'>
+        <div className='player-detail'>
+          <div>
+            <div>{player.image}</div>
+            <h3>{player.username}</h3>
+          </div>
+          <div>
+            <p>{player.health}</p>
+            <p>{player.gold}</p>
+            {player.inventory &&
+              player.inventory.map((inventoryItem) => <p>{inventoryItem}</p>)}
+          </div>
+        </div>
       </div>
     </main>
   );

@@ -1,0 +1,23 @@
+.player-detail-window-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(var(--accent-color), rgb(15, 195, 219));
+  color: var(--white-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.player-detail {
+  padding: 20px 0px;
+  height: 70%;
+  width: 85%;
+  background-color: white;
+  color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

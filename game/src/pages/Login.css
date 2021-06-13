@@ -53,6 +53,10 @@
   outline: none;
 }
 
+#login-submit {
+  width: 200px;
+}
+
 .login-error-msg {
   font-size: 0.7em;
 }
@@ -63,7 +67,9 @@
 }
 
 .signUp-link a {
+  font-size: 1.3em;
   text-decoration: none;
+  font-weight: bolder;
   color: var(--accent-color);
 }
 

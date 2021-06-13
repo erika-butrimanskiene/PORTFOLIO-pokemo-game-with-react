@@ -57,6 +57,10 @@
   outline: none;
 }
 
+#signup-submit {
+  width: 200px;
+}
+
 .error-msg {
   width: 70%;
   font-style: italic;

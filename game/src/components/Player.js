@@ -7,14 +7,16 @@ import './Player.css';
 function Player({ image, username, gold }) {
   return (
     <div className='player'>
-      <div
-        className='player__avatar'
-        style={{
-          backgroundImage: `url(http://localhost:5000/uploads/${image})`,
-        }}
-      ></div>
-      <div className='player__username'>
-        <h3>{username}</h3>
+      <div className='player__avatar-username'>
+        <div
+          className='player__avatar'
+          style={{
+            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+          }}
+        ></div>
+        <div className='player__username'>
+          <h3>{username}</h3>
+        </div>
       </div>
 
       <div className='player__gold-more'>

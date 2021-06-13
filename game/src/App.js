@@ -22,6 +22,7 @@ function App() {
   const [authentication, setAuthentication] = useState(false);
   //-- logged in user info
   const [userInfo, setUserInfo] = useState({});
+  console.log(userInfo);
 
   //EFFECTS
   //-- to set authentication and set userInfo
@@ -38,7 +39,6 @@ function App() {
       });
       const data = await response.json();
       await setUserInfo(data);
-      console.log(data);
     };
     if (token) setAuthentication(true);
     if (token) {

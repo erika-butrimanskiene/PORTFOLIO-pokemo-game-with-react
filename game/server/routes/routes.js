@@ -12,7 +12,6 @@ router.post(
   UserMiddleware.signUpValidations,
   UserController.signUp
 );
-
 router.post(
   '/user/login',
   UserMiddleware.loginValidations,
@@ -20,6 +19,11 @@ router.post(
 );
 
 router.get('/user', UserMiddleware.authenticate, UserController.getUser);
+router.patch(
+  '/user/:id',
+  UserMiddleware.authenticate,
+  UserController.updateUser
+);
 
 router.get('/users', UserController.getUsers);
 router.get('/users/:username', UserController.getUserByUsername);

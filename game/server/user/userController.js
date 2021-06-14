@@ -77,10 +77,26 @@ const getUserByUsername = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  let userId = req.params.id;
+  try {
+    let updatedUser = await User.findByIdAndUpdate(
+      {
+        _id: userId,
+      },
+      req.body
+    );
+    await res.json(updatedUser);
+  } catch {
+    res.status(404).json(err);
+  }
+};
+
 module.exports = {
   signUp,
   login,
   getUser,
   getUsers,
   getUserByUsername,
+  updateUser,
 };

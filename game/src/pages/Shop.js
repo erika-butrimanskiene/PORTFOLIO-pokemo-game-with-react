@@ -1,24 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { UserInfoContext } from '../App';
 import Armors from '../components/Armors';
 import Weapons from '../components/Weapons';
 import Potions from '../components/Potions';
+import Modal from '../components/Modal';
 
-export const ShopErrorContext = React.createContext();
+import './Shop.css';
+
+export const HandleShopContext = React.createContext();
 
 function Shop() {
+  //CONTEXTS
+  //-- user
+  const user = useContext(UserInfoContext);
   //STATES
   //-- shop error msg
-  const [shopErr, setShopErr] = useState('');
+  const [shopMsg, setShopMsg] = useState('');
+
+  //FUNCTIONS
+  //--add inventory to user state
+  const addInventoryToUser = (e, price, inventorItem) => {
+    e.preventDefault();
+    if (user.userInfo.gold >= price) {
+      user.setUserInfo({
+        ...user.userInfo,
+        inventory: [...user.userInfo.inventory, inventorItem],
+        gold: user.userInfo.gold - price,
+      });
+      setShopMsg('Inventory sucessfully added.');
+      fetchToUpdateUser(user.userInfo._id, price, inventorItem);
+    } else {
+      setShopMsg("Sorry, but You don't have enough money.");
+    }
+  };
+
+  //-- fetch to update user////PROBLEMS
+  const fetchToUpdateUser = (id, price, inventorItem) => {
+    const URL = `http://localhost:5000/user/${id}`;
+    const token = localStorage.getItem('game-auth');
+    const updateUser = async () => {
+      const response = await fetch(URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'game-token': token,
+        },
+        body: JSON.stringify({
+          ...user.userInfo,
+          inventory: [...user.userInfo.inventory, inventorItem],
+          gold: user.userInfo.gold - price,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+    };
+    updateUser();
+  };
+
+  const closeModal = () => {
+    setShopMsg('');
+  };
+
   return (
     <main>
-      <div>
-        <h1>Shop</h1>
-        <ShopErrorContext.Provider value={{ shopErr, setShopErr }}>
-          <Armors />
-          <Weapons />
-          <Potions />
-        </ShopErrorContext.Provider>
-        {shopErr !== '' && <p>{shopErr}</p>}
+      <div className='shop-window-wrapper'>
+        <h1 className='shop-window-heading'>SHOP</h1>
+        <div className='shop-window'>
+          <HandleShopContext.Provider value={{ addInventoryToUser }}>
+            <Armors />
+            <Weapons />
+            <Potions />
+          </HandleShopContext.Provider>
+        </div>
+
+        {shopMsg !== '' && (
+          <Modal handleCloseModal={closeModal} modalMsg={shopMsg} />
+        )}
       </div>
     </main>
   );

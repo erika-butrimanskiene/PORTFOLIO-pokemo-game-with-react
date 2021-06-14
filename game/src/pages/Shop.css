@@ -1,0 +1,31 @@
+.shop-window-wrapper {
+  padding-bottom: 45px;
+  min-height: 100vh;
+  background-image: linear-gradient(var(--accent-color), rgb(15, 195, 219));
+  color: var(--white-color);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.shop-window-heading {
+  font-size: 2em;
+  padding: 40px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.shop-window {
+  width: 80%;
+  background-color: rgba(255, 255, 255);
+  border-radius: 20px;
+  color: var(--dark-gray);
+}
+
+@media screen and (min-width: 1025px) {
+  .shop-window {
+    width: 75%;
+  }
+}

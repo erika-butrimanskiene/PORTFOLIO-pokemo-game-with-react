@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { UserInfoContext } from '../App';
-import { ShopErrorContext } from '../pages/Shop';
+import { HandleShopContext } from '../pages/Shop';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
@@ -8,44 +7,49 @@ import './Armor.css';
 
 function Armor({ defence, price, sellprice, image, type }) {
   //CONTEXTS
-  //-- user
-  const user = useContext(UserInfoContext);
-  //-- shop err
-  const shopErr = useContext(ShopErrorContext);
+  //--handle shop
+  const handleShop = useContext(HandleShopContext);
 
   //FUNCTIONS
-  const addArmorToUser = (e) => {
-    e.preventDefault();
-    let generatedId = nextId();
-    if (user.userInfo.gold >= price) {
-      user.setUserInfo({
-        ...user.userInfo,
-        inventory: [
-          ...user.userInfo.inventory,
-          {
-            id: generatedId,
-            type,
-            defence,
-            price,
-            sellprice,
-            image,
-          },
-        ],
-        gold: user.userInfo.gold - price,
-      });
-    } else {
-      shopErr.setShopErr("You don't have enough money");
-    }
+  //-- handle shop
+
+  let generatedId = nextId();
+  const inventorItem = {
+    id: generatedId,
+    type,
+    defence,
+    price,
+    sellprice,
+    image,
   };
 
   return (
-    <div>
-      <div>Image: {image}</div>
-      <p>Defence: {defence} </p>
-      <p>Price: {price}</p>
-      <p>Sell price: {sellprice} </p>
-      <p>Type: {type}</p>
-      <div className='armor-buy' onClick={addArmorToUser}>
+    <div className='armor'>
+      <div className='armor__about'>
+        <div
+          className='armor__icon'
+          style={{
+            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+          }}
+        ></div>
+        <div className='armor__info-container'>
+          <p className='armor__info'>
+            Defence: <span>{defence} </span>{' '}
+          </p>
+          <p className='armor__info'>
+            Price: <span>{price} </span>
+          </p>
+          <p className='armor__info'>
+            Sell price: <span>{sellprice} </span>{' '}
+          </p>
+        </div>
+      </div>
+      <div
+        className='armor-buy'
+        onClick={(e) => {
+          handleShop.addInventoryToUser(e, price, inventorItem);
+        }}
+      >
         <Button className='button btn-pink' text='Buy' />
       </div>
     </div>

@@ -1,42 +1,42 @@
 import React from 'react';
 import Weapon from './Weapon';
 
+import './Weapons.css';
+
 function Weapons() {
   return (
-    <div>
-      <h2>Weapons</h2>
-      <p>
+    <div className='weapons-wrapper'>
+      <h2 className='weapons-heading'>Weapons</h2>
+      <p className='weapons-about'>
         Weapons defines how much damage hero does to monster and have special
         effects
       </p>
-      <div>
+      <div className='weapons-items'>
         <Weapon
-          image={'imageLink'}
+          image={'icons8-katana-sword-100.png'}
           name={'Sword'}
           damage={8}
           price={40}
           sellprice={5}
-          special={'has 20% chance to block enemy attack'}
+          special={'20% chance to block attack'}
           type={'weapon'}
         />
         <Weapon
-          image={'imageLink'}
+          image={'arrow-bow.png'}
           name={'Bow'}
           damage={6}
           price={300}
           sellprice={80}
-          special={'has 30% chance to do double damage'}
+          special={'30% chance to do double damage'}
           type={'weapon'}
         />
         <Weapon
-          image={'imageLink'}
+          image={'icons8-fantasy-100.png'}
           name={'Magic wand'}
           damage={5}
           price={1000}
           sellprice={400}
-          special={
-            'has 40% chance to heal hero on enemy attack by 10hit points'
-          }
+          special={'40% chance to heal hero on enemy attack by 10hit points'}
           type={'weapon'}
         />
       </div>

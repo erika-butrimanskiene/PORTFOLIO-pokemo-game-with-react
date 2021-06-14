@@ -1,50 +1,55 @@
 import React, { useContext } from 'react';
-import { UserInfoContext } from '../App';
-import { ShopErrorContext } from '../pages/Shop';
+import { HandleShopContext } from '../pages/Shop';
 import nextId from 'react-id-generator';
 import Button from './Button';
+
 import './Potion.css';
 
 function Potion({ heals, price, sellprice, image, type }) {
   //CONTEXTS
-  //-- user
-  const user = useContext(UserInfoContext);
-  //-- shop err
-  const shopErr = useContext(ShopErrorContext);
+  //--handle shop
+  const handleShop = useContext(HandleShopContext);
 
   //FUNCTIONS
-  const addPotionToUser = (e) => {
-    e.preventDefault();
-    let generatedId = nextId();
-    if (user.userInfo.gold >= price) {
-      user.setUserInfo({
-        ...user.userInfo,
-        inventory: [
-          ...user.userInfo.inventory,
-          {
-            id: generatedId,
-            type,
-            heals,
-            price,
-            sellprice,
-            image,
-          },
-        ],
-        gold: user.userInfo.gold - price,
-      });
-    } else {
-      shopErr.setShopErr("You don't have enough money");
-    }
+  //-- handle shop
+
+  let generatedId = nextId();
+  const inventorItem = {
+    id: generatedId,
+    type,
+    heals,
+    price,
+    sellprice,
+    image,
   };
 
   return (
-    <div>
-      <div>Image: {image}</div>
-      <p>Heals: {heals} </p>
-      <p>Price: {price}</p>
-      <p>Sell price: {sellprice} </p>
-      <p>Type: {type}</p>
-      <div className='potion-buy' onClick={addPotionToUser}>
+    <div className='potion'>
+      <div className='potion__about'>
+        <div
+          className='potion__icon'
+          style={{
+            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+          }}
+        ></div>
+        <div className='potion__info-container'>
+          <p className='potion__info'>
+            Heals: <span>{heals} </span>{' '}
+          </p>
+          <p className='potion__info'>
+            Price: <span>{price} </span>
+          </p>
+          <p className='potion__info'>
+            Sell price: <span>{sellprice} </span>{' '}
+          </p>
+        </div>
+      </div>
+      <div
+        className='potion-buy'
+        onClick={(e) => {
+          handleShop.addInventoryToUser(e, price, inventorItem);
+        }}
+      >
         <Button className='button btn-pink' text='Buy' />
       </div>
     </div>

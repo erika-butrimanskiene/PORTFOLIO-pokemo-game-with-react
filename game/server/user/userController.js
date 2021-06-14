@@ -47,6 +47,17 @@ const login = async (req, res) => {
   }
 };
 
+const logout = async (req, res) => {
+  let token = req.token;
+  let user = req.user;
+  try {
+    await user.update({ $pull: { sessionTokens: { token } } });
+    res.json('Successfull logout');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const getUser = async (req, res) => {
   try {
     let user = req.user;
@@ -99,4 +110,5 @@ module.exports = {
   getUsers,
   getUserByUsername,
   updateUser,
+  logout,
 };

@@ -26,14 +26,18 @@ function PlayersBoard() {
     getUsers();
   }, []);
 
-  return players.map((player) => (
-    <Player
-      image={player.image}
-      username={player.username}
-      gold={player.gold}
-      key={player._id}
-    />
-  ));
+  return players
+    .sort((a, b) => {
+      return a.gold > b.gold ? -1 : 1;
+    })
+    .map((player) => (
+      <Player
+        image={player.image}
+        username={player.username}
+        gold={player.gold}
+        key={player._id}
+      />
+    ));
 }
 
 export default PlayersBoard;

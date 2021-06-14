@@ -5,7 +5,7 @@ import Button from './Button';
 
 import './Armor.css';
 
-function Armor({ defence, price, sellprice, image, type }) {
+function Armor({ defence, price, sellprice, image, type, showButton }) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
@@ -44,14 +44,16 @@ function Armor({ defence, price, sellprice, image, type }) {
           </p>
         </div>
       </div>
-      <div
-        className='armor-buy'
-        onClick={(e) => {
-          handleShop.addInventoryToUser(e, price, inventorItem);
-        }}
-      >
-        <Button className='button btn-pink' text='Buy' />
-      </div>
+      {showButton && (
+        <div
+          className='armor-buy'
+          onClick={(e) => {
+            handleShop.addInventoryToUser(e, price, inventorItem);
+          }}
+        >
+          <Button className='button btn-pink' text='Buy' />
+        </div>
+      )}
     </div>
   );
 }

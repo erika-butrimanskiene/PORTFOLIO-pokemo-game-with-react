@@ -12,7 +12,7 @@
 
 .shop-window-heading {
   font-size: 2em;
-  padding: 40px 0px;
+  padding: 10px 0px 40px 0px;
   width: 100%;
   text-align: center;
 }
@@ -24,8 +24,22 @@
   color: var(--dark-gray);
 }
 
+.shop-window__back {
+  width: 80%;
+  padding: 25px 0px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  color: white;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1025px) {
   .shop-window {
+    width: 75%;
+  }
+
+  .shop-window__back {
     width: 75%;
   }
 }

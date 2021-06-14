@@ -19,12 +19,27 @@ function GameWindow() {
   //-- authentification
   const auth = useContext(AuthenticationContext);
 
+  //ENDPOINTS
+
+  const URL = 'http://localhost:5000/user/logout';
+
   //FUNCTIONS
   //-- handle user logout
 
-  const handleLogout = () => {
-    localStorage.removeItem('game-auth');
-    auth.setAuthentication(false);
+  const handleLogout = async () => {
+    let token = localStorage.getItem('game-auth');
+    const response = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'game-token': token,
+      },
+    });
+
+    if (response.status === 200) {
+      localStorage.removeItem('game-auth');
+      auth.setAuthentication(false);
+    }
   };
   return (
     <main>

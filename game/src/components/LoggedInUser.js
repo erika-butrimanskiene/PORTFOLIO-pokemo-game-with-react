@@ -3,7 +3,6 @@ import { RiCoinsFill } from 'react-icons/ri';
 
 import './LoggedInUser.css';
 
-//PAGES
 import ProgressBar from '../components/ProgressBar';
 
 function LoggedInUser({ image, username, health, gold }) {

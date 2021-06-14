@@ -5,7 +5,16 @@ import Button from './Button';
 
 import './Weapon.css';
 
-function Weapon({ name, damage, price, sellprice, special, image, type }) {
+function Weapon({
+  name,
+  damage,
+  price,
+  sellprice,
+  special,
+  image,
+  type,
+  showButton,
+}) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
@@ -49,14 +58,16 @@ function Weapon({ name, damage, price, sellprice, special, image, type }) {
           </p>
         </div>
       </div>
-      <div
-        className='weapon-buy'
-        onClick={(e) => {
-          handleShop.addInventoryToUser(e, price, inventorItem);
-        }}
-      >
-        <Button className='button btn-pink' text='Buy' />
-      </div>
+      {showButton && (
+        <div
+          className='weapon-buy'
+          onClick={(e) => {
+            handleShop.addInventoryToUser(e, price, inventorItem);
+          }}
+        >
+          <Button className='button btn-pink' text='Buy' />
+        </div>
+      )}
       <p className='weapon__info special'>
         <span>{special}</span>
       </p>

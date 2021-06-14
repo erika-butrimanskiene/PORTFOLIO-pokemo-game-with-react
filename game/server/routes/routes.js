@@ -18,6 +18,8 @@ router.post(
   UserController.login
 );
 
+router.get('/user/logout', UserMiddleware.authenticate, UserController.logout);
+
 router.get('/user', UserMiddleware.authenticate, UserController.getUser);
 router.patch(
   '/user/:id',

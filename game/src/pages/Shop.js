@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { UserInfoContext } from '../App';
+import { Link } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 import Armors from '../components/Armors';
 import Weapons from '../components/Weapons';
 import Potions from '../components/Potions';
@@ -64,6 +66,10 @@ function Shop() {
   return (
     <main>
       <div className='shop-window-wrapper'>
+        <Link className='shop-window__back' to='/'>
+          <AiOutlineArrowLeft size={25} />
+          Start Window
+        </Link>
         <h1 className='shop-window-heading'>SHOP</h1>
         <div className='shop-window'>
           <HandleShopContext.Provider value={{ addInventoryToUser }}>

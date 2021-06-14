@@ -20,6 +20,7 @@ function Weapons() {
           sellprice={5}
           special={'20% chance to block attack'}
           type={'weapon'}
+          showButton={true}
         />
         <Weapon
           image={'arrow-bow.png'}
@@ -29,6 +30,7 @@ function Weapons() {
           sellprice={80}
           special={'30% chance to do double damage'}
           type={'weapon'}
+          showButton={true}
         />
         <Weapon
           image={'icons8-fantasy-100.png'}
@@ -38,6 +40,7 @@ function Weapons() {
           sellprice={400}
           special={'40% chance to heal hero on enemy attack by 10hit points'}
           type={'weapon'}
+          showButton={true}
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import Button from './Button';
 
 import './Potion.css';
 
-function Potion({ heals, price, sellprice, image, type }) {
+function Potion({ heals, price, sellprice, image, type, showButton }) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
@@ -44,14 +44,16 @@ function Potion({ heals, price, sellprice, image, type }) {
           </p>
         </div>
       </div>
-      <div
-        className='potion-buy'
-        onClick={(e) => {
-          handleShop.addInventoryToUser(e, price, inventorItem);
-        }}
-      >
-        <Button className='button btn-pink' text='Buy' />
-      </div>
+      {showButton && (
+        <div
+          className='potion-buy'
+          onClick={(e) => {
+            handleShop.addInventoryToUser(e, price, inventorItem);
+          }}
+        >
+          <Button className='button btn-pink' text='Buy' />
+        </div>
+      )}
     </div>
   );
 }

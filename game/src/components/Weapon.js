@@ -15,6 +15,8 @@ function Weapon({
   image,
   type,
   showBuyButton,
+  showSellButton,
+  toArenaModal,
   index,
 }) {
   //CONTEXTS
@@ -58,9 +60,11 @@ function Weapon({
               Price: <span>{price}</span>
             </p>
           )}
-          <p className='weapon__info'>
-            Sell price: <span>{sellprice}</span>{' '}
-          </p>
+          {!toArenaModal && (
+            <p className='weapon__info'>
+              Sell price: <span>{sellprice}</span>{' '}
+            </p>
+          )}
         </div>
       </div>
       {showBuyButton && (
@@ -74,7 +78,7 @@ function Weapon({
         </div>
       )}
 
-      {!showBuyButton && (
+      {showSellButton && (
         <div
           className='weapon-button'
           onClick={(e) => {

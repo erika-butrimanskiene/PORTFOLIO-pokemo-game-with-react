@@ -71,68 +71,76 @@ function Inventory() {
         </Link>
         <h1 className='inventory-window-heading'>USER INVENTORY</h1>
 
-        <HandleSellContext.Provider value={{ removeInventoryFromUser }}>
-          <div className='inventory-window'>
-            {user.userInfo.inventory.length > 0 ? (
-              user.userInfo.inventory
-                .sort((a, b) => {
-                  return a.type < b.type ? -1 : 1;
-                })
-                .map((inventoryItem, index) => {
-                  let returnItem;
-                  if (inventoryItem.type === 'armor') {
-                    returnItem = (
-                      <Armor
-                        key={index}
-                        index={index}
-                        image={inventoryItem.image}
-                        defence={inventoryItem.defence}
-                        price={inventoryItem.price}
-                        sellprice={inventoryItem.sellprice}
-                        type={inventoryItem.type}
-                        showBuyButton={false}
-                      />
-                    );
-                  }
+        {Object.keys(user.userInfo).length !== 0 && (
+          <HandleSellContext.Provider value={{ removeInventoryFromUser }}>
+            <div className='inventory-window'>
+              {user.userInfo.inventory.length > 0 ? (
+                user.userInfo.inventory
+                  .sort((a, b) => {
+                    return a.type < b.type ? -1 : 1;
+                  })
+                  .map((inventoryItem, index) => {
+                    let returnItem;
+                    if (inventoryItem.type === 'armor') {
+                      returnItem = (
+                        <Armor
+                          key={index}
+                          index={index}
+                          image={inventoryItem.image}
+                          defence={inventoryItem.defence}
+                          price={inventoryItem.price}
+                          sellprice={inventoryItem.sellprice}
+                          type={inventoryItem.type}
+                          showBuyButton={false}
+                          showSellButton={true}
+                          toArenaModal={false}
+                        />
+                      );
+                    }
 
-                  if (inventoryItem.type === 'weapon') {
-                    returnItem = (
-                      <Weapon
-                        key={index}
-                        index={index}
-                        image={inventoryItem.image}
-                        name={inventoryItem.name}
-                        damage={inventoryItem.damage}
-                        price={inventoryItem.price}
-                        sellprice={inventoryItem.sellprice}
-                        special={inventoryItem.special}
-                        type={inventoryItem.type}
-                        showBuyButton={false}
-                      />
-                    );
-                  }
+                    if (inventoryItem.type === 'weapon') {
+                      returnItem = (
+                        <Weapon
+                          key={index}
+                          index={index}
+                          image={inventoryItem.image}
+                          name={inventoryItem.name}
+                          damage={inventoryItem.damage}
+                          price={inventoryItem.price}
+                          sellprice={inventoryItem.sellprice}
+                          special={inventoryItem.special}
+                          type={inventoryItem.type}
+                          showBuyButton={false}
+                          showSellButton={true}
+                          toArenaModal={false}
+                        />
+                      );
+                    }
 
-                  if (inventoryItem.type === 'potion') {
-                    returnItem = (
-                      <Potion
-                        key={index}
-                        index={index}
-                        heals={inventoryItem.heals}
-                        price={inventoryItem.price}
-                        sellprice={inventoryItem.sellprice}
-                        image={inventoryItem.image}
-                        type={inventoryItem.type}
-                        showBuyButton={false}
-                      />
-                    );
-                  }
-                  return returnItem;
-                })
-            ) : (
-              <div>User don't have inventory.</div>
-            )}
-          </div>
-        </HandleSellContext.Provider>
+                    if (inventoryItem.type === 'potion') {
+                      returnItem = (
+                        <Potion
+                          key={index}
+                          index={index}
+                          heals={inventoryItem.heals}
+                          price={inventoryItem.price}
+                          sellprice={inventoryItem.sellprice}
+                          image={inventoryItem.image}
+                          type={inventoryItem.type}
+                          showBuyButton={false}
+                          showSellButton={true}
+                          toArenaModal={false}
+                        />
+                      );
+                    }
+                    return returnItem;
+                  })
+              ) : (
+                <div>User don't have inventory.</div>
+              )}
+            </div>
+          </HandleSellContext.Provider>
+        )}
         {sellMsg !== '' && (
           <Modal handleCloseModal={closeModal} modalMsg={sellMsg} />
         )}

@@ -21,6 +21,8 @@ function Weapons() {
           special={'20% chance to block attack'}
           type={'weapon'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Weapon
           image={'arrow-bow.png'}
@@ -31,6 +33,8 @@ function Weapons() {
           special={'30% chance to do double damage'}
           type={'weapon'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Weapon
           image={'icons8-fantasy-100.png'}
@@ -41,6 +45,8 @@ function Weapons() {
           special={'40% chance to heal hero on enemy attack by 10hit points'}
           type={'weapon'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
       </div>
     </div>

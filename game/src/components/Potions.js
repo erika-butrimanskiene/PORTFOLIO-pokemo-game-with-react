@@ -18,6 +18,8 @@ function Potions() {
           image={'icons8-mana-100.png'}
           type={'potion'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Potion
           heals={35}
@@ -26,6 +28,8 @@ function Potions() {
           image={'icons8-mana-100.png'}
           type={'potion'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Potion
           heals={50}
@@ -34,6 +38,8 @@ function Potions() {
           image={'icons8-mana-100.png'}
           type={'potion'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
       </div>
     </div>

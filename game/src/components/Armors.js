@@ -18,6 +18,8 @@ function Armors() {
           sellprice={10}
           type={'armor'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Armor
           image={'icons8-body-armor-100.png'}
@@ -26,6 +28,8 @@ function Armors() {
           sellprice={100}
           type={'armor'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
         <Armor
           image={'icons8-body-armor-100.png'}
@@ -34,6 +38,8 @@ function Armors() {
           sellprice={300}
           type={'armor'}
           showBuyButton={true}
+          showSellButton={false}
+          toArenaModal={false}
         />
       </div>
     </div>

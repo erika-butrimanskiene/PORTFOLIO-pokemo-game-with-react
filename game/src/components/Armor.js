@@ -13,6 +13,8 @@ function Armor({
   image,
   type,
   showBuyButton,
+  showSellButton,
+  toArenaModal,
   index,
 }) {
   //CONTEXTS
@@ -53,9 +55,11 @@ function Armor({
               Price: <span>{price} </span>
             </p>
           )}
-          <p className='armor__info'>
-            Sell price: <span>{sellprice} </span>{' '}
-          </p>
+          {!toArenaModal && (
+            <p className='armor__info'>
+              Sell price: <span>{sellprice} </span>{' '}
+            </p>
+          )}
         </div>
       </div>
       {showBuyButton && (
@@ -69,7 +73,7 @@ function Armor({
         </div>
       )}
 
-      {!showBuyButton && (
+      {showSellButton && (
         <div
           className='armor-button'
           onClick={(e) => {

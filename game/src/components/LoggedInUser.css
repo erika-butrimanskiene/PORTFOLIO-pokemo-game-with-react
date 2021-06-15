@@ -7,7 +7,19 @@
   align-items: center;
 }
 
+.arena-window__player {
+  width: calc(100% - 50px);
+  margin: 25px 25px 10px 25px;
+  padding: 10px 35px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: var(--second-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .game-window__player-username {
+  text-align: center;
   color: var(--white-color);
 }
 
@@ -21,6 +33,11 @@
 
 .game-window__player-status {
   padding: 10px 40px;
+  width: 100%;
+  display: flex;
+}
+
+.arena-window__player-status {
   width: 100%;
   display: flex;
 }

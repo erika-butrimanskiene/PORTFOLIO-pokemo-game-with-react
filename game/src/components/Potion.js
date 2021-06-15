@@ -13,6 +13,8 @@ function Potion({
   image,
   type,
   showBuyButton,
+  showSellButton,
+  toArenaModal,
   index,
 }) {
   //CONTEXTS
@@ -49,9 +51,11 @@ function Potion({
               Price: <span>{price} </span>
             </p>
           )}
-          <p className='potion__info'>
-            Sell price: <span>{sellprice} </span>{' '}
-          </p>
+          {!toArenaModal && (
+            <p className='potion__info'>
+              Sell price: <span>{sellprice} </span>{' '}
+            </p>
+          )}
         </div>
       </div>
       {showBuyButton && (
@@ -64,7 +68,7 @@ function Potion({
           <Button className='button btn-pink' text='Buy' />
         </div>
       )}
-      {!showBuyButton && (
+      {showSellButton && (
         <div
           className='potion-button'
           onClick={(e) => {

@@ -1,0 +1,35 @@
+.arena-window__enemy {
+  width: calc(100% - 50px);
+  margin: 25px 25px 10px 25px;
+  padding: 10px 35px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: gold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arena-window__enemy-name {
+  text-align: center;
+  color: var(--white-color);
+}
+
+.arena-window__enemy-avatar {
+  margin: 30px 0px 20px 0px;
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+
+.arena-window__enemy-status {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 768px) {
+}
+
+@media screen and (min-width: 1025px) {
+}

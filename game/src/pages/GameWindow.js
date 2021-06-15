@@ -51,6 +51,7 @@ function GameWindow() {
             username={user.userInfo.username}
             health={user.userInfo.health}
             gold={user.userInfo.gold}
+            isArena={false}
           />
 
           <div className='game-window__links'>

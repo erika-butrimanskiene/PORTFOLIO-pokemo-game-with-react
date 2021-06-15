@@ -13,6 +13,16 @@
   color: white;
 }
 
+.btn-red {
+  background-color: var(--second-color);
+  color: white;
+}
+
+.btn-red {
+  background-color: var(--second-color);
+  color: white;
+}
+
 .btn-white {
   background-color: white;
   color: var(--accent-color);

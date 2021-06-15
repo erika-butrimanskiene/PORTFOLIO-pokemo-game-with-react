@@ -1,17 +1,25 @@
 import React, { useContext } from 'react';
 import { HandleShopContext } from '../pages/Shop';
+import { HandleSellContext } from '../pages/Inventory';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
 import './Potion.css';
 
-function Potion({ heals, price, sellprice, image, type, showButton }) {
+function Potion({
+  heals,
+  price,
+  sellprice,
+  image,
+  type,
+  showBuyButton,
+  index,
+}) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
-
-  //FUNCTIONS
-  //-- handle shop
+  //--handle sell
+  const handleSell = useContext(HandleSellContext);
 
   let generatedId = nextId();
   const inventorItem = {
@@ -36,22 +44,34 @@ function Potion({ heals, price, sellprice, image, type, showButton }) {
           <p className='potion__info'>
             Heals: <span>{heals} </span>{' '}
           </p>
-          <p className='potion__info'>
-            Price: <span>{price} </span>
-          </p>
+          {showBuyButton && (
+            <p className='potion__info'>
+              Price: <span>{price} </span>
+            </p>
+          )}
           <p className='potion__info'>
             Sell price: <span>{sellprice} </span>{' '}
           </p>
         </div>
       </div>
-      {showButton && (
+      {showBuyButton && (
         <div
-          className='potion-buy'
+          className='potion-button'
           onClick={(e) => {
             handleShop.addInventoryToUser(e, price, inventorItem);
           }}
         >
           <Button className='button btn-pink' text='Buy' />
+        </div>
+      )}
+      {!showBuyButton && (
+        <div
+          className='potion-button'
+          onClick={(e) => {
+            handleSell.removeInventoryFromUser(e, sellprice, index);
+          }}
+        >
+          <Button className='button btn-pink' text='Sell' />
         </div>
       )}
     </div>

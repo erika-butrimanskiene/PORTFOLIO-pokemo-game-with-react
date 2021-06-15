@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { HandleShopContext } from '../pages/Shop';
+import { HandleSellContext } from '../pages/Inventory';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
@@ -13,14 +14,14 @@ function Weapon({
   special,
   image,
   type,
-  showButton,
+  showBuyButton,
+  index,
 }) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
-
-  //FUNCTIONS
-  //-- handle shop
+  //--handle sell
+  const handleSell = useContext(HandleSellContext);
 
   let generatedId = nextId();
   const inventorItem = {
@@ -44,23 +45,27 @@ function Weapon({
           }}
         ></div>
         <div className='weapon__info-container'>
-          <p className='weapon__info'>
-            Name: <span>{name}</span>
-          </p>
+          {showBuyButton && (
+            <p className='weapon__info'>
+              Name: <span>{name}</span>
+            </p>
+          )}
           <p className='weapon__info'>
             Damage: <span>{damage}</span>{' '}
           </p>
-          <p className='weapon__info'>
-            Price: <span>{price}</span>
-          </p>
+          {showBuyButton && (
+            <p className='weapon__info'>
+              Price: <span>{price}</span>
+            </p>
+          )}
           <p className='weapon__info'>
             Sell price: <span>{sellprice}</span>{' '}
           </p>
         </div>
       </div>
-      {showButton && (
+      {showBuyButton && (
         <div
-          className='weapon-buy'
+          className='weapon-button'
           onClick={(e) => {
             handleShop.addInventoryToUser(e, price, inventorItem);
           }}
@@ -68,6 +73,18 @@ function Weapon({
           <Button className='button btn-pink' text='Buy' />
         </div>
       )}
+
+      {!showBuyButton && (
+        <div
+          className='weapon-button'
+          onClick={(e) => {
+            handleSell.removeInventoryFromUser(e, sellprice, index);
+          }}
+        >
+          <Button className='button btn-pink' text='Sell' />
+        </div>
+      )}
+
       <p className='weapon__info special'>
         <span>{special}</span>
       </p>

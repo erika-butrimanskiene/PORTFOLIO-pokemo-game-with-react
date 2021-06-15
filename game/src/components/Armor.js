@@ -1,14 +1,26 @@
 import React, { useContext } from 'react';
 import { HandleShopContext } from '../pages/Shop';
+import { HandleSellContext } from '../pages/Inventory';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
 import './Armor.css';
 
-function Armor({ defence, price, sellprice, image, type, showButton }) {
+function Armor({
+  defence,
+  price,
+  sellprice,
+  image,
+  type,
+  showBuyButton,
+  index,
+}) {
   //CONTEXTS
   //--handle shop
   const handleShop = useContext(HandleShopContext);
+
+  //--handle sell
+  const handleSell = useContext(HandleSellContext);
 
   //FUNCTIONS
   //-- handle shop
@@ -36,22 +48,35 @@ function Armor({ defence, price, sellprice, image, type, showButton }) {
           <p className='armor__info'>
             Defence: <span>{defence} </span>{' '}
           </p>
-          <p className='armor__info'>
-            Price: <span>{price} </span>
-          </p>
+          {showBuyButton && (
+            <p className='armor__info'>
+              Price: <span>{price} </span>
+            </p>
+          )}
           <p className='armor__info'>
             Sell price: <span>{sellprice} </span>{' '}
           </p>
         </div>
       </div>
-      {showButton && (
+      {showBuyButton && (
         <div
-          className='armor-buy'
+          className='armor-button'
           onClick={(e) => {
             handleShop.addInventoryToUser(e, price, inventorItem);
           }}
         >
           <Button className='button btn-pink' text='Buy' />
+        </div>
+      )}
+
+      {!showBuyButton && (
+        <div
+          className='armor-button'
+          onClick={(e) => {
+            handleSell.removeInventoryFromUser(e, sellprice, index);
+          }}
+        >
+          <Button className='button btn-pink' text='Sell' />
         </div>
       )}
     </div>

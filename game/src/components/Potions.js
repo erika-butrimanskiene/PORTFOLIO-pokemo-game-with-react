@@ -17,7 +17,7 @@ function Potions() {
           sellprice={5}
           image={'icons8-mana-100.png'}
           type={'potion'}
-          showButton={true}
+          showBuyButton={true}
         />
         <Potion
           heals={35}
@@ -25,7 +25,7 @@ function Potions() {
           sellprice={10}
           image={'icons8-mana-100.png'}
           type={'potion'}
-          showButton={true}
+          showBuyButton={true}
         />
         <Potion
           heals={50}
@@ -33,7 +33,7 @@ function Potions() {
           sellprice={20}
           image={'icons8-mana-100.png'}
           type={'potion'}
-          showButton={true}
+          showBuyButton={true}
         />
       </div>
     </div>

@@ -1,6 +1,6 @@
 .weapon {
   padding: 10px 0px;
-  height: 180px;
+  min-height: 150px;
   display: flex;
   flex-wrap: wrap;
   font-size: 1em;
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.weapon-buy {
+.weapon-button {
   width: 80px;
 }
 
@@ -31,13 +31,12 @@
 }
 
 .special {
-  padding: 10px 0px 25px 0px;
+  padding: 10px 10px 15px 10px;
   width: 100%;
 }
 
 @media screen and (min-width: 1025px) {
   .weapon {
-    height: auto;
     width: 33.33%;
     justify-content: center;
     align-items: center;
@@ -60,11 +59,9 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    height: 100px;
     width: 100%;
   }
   .special span {
     text-align: center;
-    padding: 0px 15px 25px 15px;
   }
 }

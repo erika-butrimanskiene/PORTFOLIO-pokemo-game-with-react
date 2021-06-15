@@ -1,6 +1,6 @@
 .potion {
   padding: 10px 0px;
-  height: 180px;
+  height: 130px;
   display: flex;
   flex-wrap: wrap;
   font-size: 1em;
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.potion-buy {
+.potion-button {
   width: 80px;
 }
 

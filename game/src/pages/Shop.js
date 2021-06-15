@@ -16,7 +16,7 @@ function Shop() {
   //-- user
   const user = useContext(UserInfoContext);
   //STATES
-  //-- shop error msg
+  //-- shop msg
   const [shopMsg, setShopMsg] = useState('');
 
   //FUNCTIONS
@@ -36,7 +36,7 @@ function Shop() {
     }
   };
 
-  //-- fetch to update user////PROBLEMS
+  //-- fetch to update user
   const fetchToUpdateUser = (id, price, inventorItem) => {
     const URL = `http://localhost:5000/user/${id}`;
     const token = localStorage.getItem('game-auth');

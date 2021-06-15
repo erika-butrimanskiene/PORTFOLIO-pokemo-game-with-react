@@ -89,6 +89,7 @@
 }
 
 .player-detail__inventory-list {
+  padding-bottom: 20px;
   display: flex;
   width: 95%;
   flex-direction: column;

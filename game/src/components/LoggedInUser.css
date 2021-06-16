@@ -38,6 +38,13 @@
   background-size: cover;
 }
 
+.arena-window__player-avatar-username {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .arena-window__player-avatar {
   margin: 30px 0px 20px 0px;
   height: 100px;

@@ -46,7 +46,7 @@ function Weapon({
   //FUNCTIONS
   //-- handle inventory set
   const selectWeapon = () => {
-    handleInventorySelection.setSelectedWeapon({ image, damage });
+    handleInventorySelection.setSelectedWeapon({ image, damage, special });
   };
 
   const selectWeaponStyle = () => {

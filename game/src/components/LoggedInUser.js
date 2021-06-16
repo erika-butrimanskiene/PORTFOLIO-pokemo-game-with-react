@@ -19,7 +19,13 @@ function LoggedInUser({ image, username, health, gold, isArena }) {
             : 'game-window__player-details'
         }
       >
-        <div>
+        <div
+          className={
+            isArena
+              ? 'arena-window__player-avatar-username'
+              : 'game-window__player-avatar-username'
+          }
+        >
           {image && (
             <div
               className={

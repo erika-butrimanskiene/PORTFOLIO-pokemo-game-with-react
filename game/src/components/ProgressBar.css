@@ -16,7 +16,9 @@
 }
 
 .progress-bar__label {
-  padding: 0px 10px;
+  width: 80%;
+  display: block;
+  justify-content: right;
   color: gold;
   font-weight: bold;
 }

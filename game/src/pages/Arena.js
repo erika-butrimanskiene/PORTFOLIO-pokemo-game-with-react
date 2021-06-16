@@ -14,6 +14,7 @@ import Modal from '../components/Modal';
 
 //PAGES
 import LoggedInUser from '../components/LoggedInUser';
+// import { RiSurroundSoundLine } from 'react-icons/ri';
 
 export const SelectedInventoryContext = React.createContext();
 
@@ -30,11 +31,10 @@ function Arena() {
   //-- selected weapon
   const [selectedWeapon, setSelectedWeapon] = useState({});
 
-  //-- selected potion
-  const [selectedPotion, setSelectedPotion] = useState({});
-
   //-- select inventory msg
   const [selectMsg, setSelectMsg] = useState('');
+  //-- is inventory selected
+  const [inventoryUnselectedMsg, setInventoryUnselectedMsg] = useState('');
   //-- inventory type to modal
   const [inventoryType, setInventoryType] = useState('');
 
@@ -43,6 +43,7 @@ function Arena() {
     generateEnemyToPlay();
   }, []);
 
+  //FUNCTIONS
   const generateEnemyToPlay = () => {
     const enemies = [
       {
@@ -72,9 +73,95 @@ function Arena() {
     setSelectMsg('');
   };
 
+  const closeUnselectedInfoModal = () => {
+    setInventoryUnselectedMsg('');
+  };
+
   const openInventoryList = (inventor) => {
     setSelectMsg(`Select ${inventor}`);
     setInventoryType(inventor);
+  };
+
+  const handleHit = () => {
+    let enemyToPlayHit = enemyToPlay;
+    let userHit = user.userInfo;
+    handlePlayerHit(userHit, enemyToPlayHit);
+  };
+
+  const handlePlayerHit = (userHit, enemyToPlayHit) => {
+    if (Object.keys(selectedWeapon).length !== 0) {
+      let randomDamage = Math.floor(Math.random() * selectedWeapon.damage);
+      enemyToPlayHit.health = enemyToPlayHit.health - randomDamage;
+      handleEnemyHit(userHit, enemyToPlayHit);
+    } else {
+      setInventoryUnselectedMsg('Please select weapon.');
+    }
+  };
+
+  const handleEnemyHit = async (userHit, enemyToPlayHit) => {
+    if (Object.keys(selectedWeapon).length !== 0) {
+      if (enemyToPlayHit.health > 0) {
+        let randomDamage = Math.floor(Math.random() * enemyToPlayHit.damage);
+        let randomDefence;
+        let randomAmountOfGold = Math.floor(Math.random() * 10);
+
+        if (Object.keys(selectedArmor).length !== 0) {
+          randomDefence = Math.floor(Math.random() * selectedArmor.defence);
+        } else {
+          randomDefence = 0;
+        }
+
+        if (randomDefence - randomDamage < 0) {
+          userHit.health = userHit.health - randomDamage + randomDefence;
+        }
+
+        if (userHit.health > 0) {
+          userHit.gold = userHit.gold + randomAmountOfGold;
+          await fetchToUpdateUser(userHit);
+          user.invokeGetUserFetch();
+          setEnemyToPlay({ ...enemyToPlayHit });
+        } else {
+          console.log('REIKIA PADARYTI KO NEPABAIGEI');
+        }
+      } else {
+        generateEnemyToPlay();
+      }
+    } else {
+      setInventoryUnselectedMsg(
+        `Please select weapon. And don't forget armors!`
+      );
+    }
+  };
+
+  const usePotion = async (heals, index) => {
+    user.userInfo.inventory.splice(index, 1);
+
+    let userToUpdate = {
+      ...user.userInfo,
+      inventory: user.userInfo.inventory,
+      health: user.userInfo.health + heals,
+    };
+    await fetchToUpdateUser(userToUpdate);
+    user.invokeGetUserFetch();
+  };
+
+  //-- fetch to update user
+  const fetchToUpdateUser = async (userToFetch) => {
+    const URL = `http://localhost:5000/user/${user.userInfo._id}`;
+    const token = localStorage.getItem('game-auth');
+    const updateUser = async () => {
+      const response = await fetch(URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          'game-token': token,
+        },
+        body: JSON.stringify(userToFetch),
+      });
+
+      return response;
+    };
+    await updateUser();
   };
 
   return (
@@ -85,8 +172,7 @@ function Arena() {
           setSelectedArmor,
           selectedWeapon,
           setSelectedWeapon,
-          selectedPotion,
-          setSelectedPotion,
+          usePotion,
         }}
       >
         <div className='arena-window-wrapper'>
@@ -127,7 +213,7 @@ function Arena() {
                 </div>
               </div>
 
-              <div className='hit-button'>
+              <div className='hit-button' onClick={handleHit}>
                 <Button className='button btn-red' text='HIT' />
               </div>
             </div>
@@ -148,6 +234,12 @@ function Arena() {
               modalMsg={selectMsg}
               handleCloseModal={closeModal}
               inventoryType={inventoryType}
+            />
+          )}
+          {inventoryUnselectedMsg !== '' && (
+            <Modal
+              modalMsg={inventoryUnselectedMsg}
+              handleCloseModal={closeUnselectedInfoModal}
             />
           )}
         </div>

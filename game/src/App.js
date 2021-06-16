@@ -27,6 +27,12 @@ function App() {
   //EFFECTS
   //-- to set authentication and set userInfo
   useEffect(() => {
+    invokeGetUserFetch();
+  }, []);
+
+  //FUNCTIONS
+
+  const invokeGetUserFetch = () => {
     const URL = 'http://localhost:5000/user';
     const token = localStorage.getItem('game-auth');
     const getUser = async () => {
@@ -44,14 +50,21 @@ function App() {
     if (token) {
       getUser();
     }
-  }, []);
+    console.log('state updated');
+  };
 
   return (
     <div className='App'>
       <AuthenticationContext.Provider
         value={{ authentication, setAuthentication }}
       >
-        <UserInfoContext.Provider value={{ userInfo, setUserInfo }}>
+        <UserInfoContext.Provider
+          value={{
+            userInfo,
+            setUserInfo,
+            invokeGetUserFetch,
+          }}
+        >
           <Router>
             <Switch>
               <Route exact path='/signUp'>

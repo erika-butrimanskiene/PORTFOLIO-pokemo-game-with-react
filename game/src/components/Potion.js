@@ -31,8 +31,8 @@ function Potion({
 
   //FUNCTIONS
   //-- handle inventory set
-  const selectPotion = () => {
-    handleInventorySelection.setSelectedPotion({ image, heals });
+  const usePotion = () => {
+    handleInventorySelection.usePotion(heals, index);
   };
 
   const selectPotionStyle = () => {
@@ -56,7 +56,7 @@ function Potion({
   return (
     <div
       className='potion'
-      onClick={toArenaModal ? selectPotion : undefined}
+      onClick={toArenaModal ? usePotion : undefined}
       onMouseEnter={toArenaModal ? selectPotionStyle : undefined}
       onMouseLeave={toArenaModal ? unselectPotionStyle : undefined}
     >

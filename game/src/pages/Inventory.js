@@ -22,23 +22,20 @@ function Inventory() {
 
   //FUNCTIONS
   //--remove inventory from user state
-  const removeInventoryFromUser = (e, sellprice, index) => {
+  const removeInventoryFromUser = async (e, sellprice, index) => {
     e.preventDefault();
-    user.userInfo.inventory.splice(index, 1);
-
-    user.setUserInfo({
-      ...user.userInfo,
-      inventory: user.userInfo.inventory,
-      gold: user.userInfo.gold + sellprice,
-    });
     setSellMsg('Inventory sucessfully sold.');
-    fetchToUpdateUser(user.userInfo._id, sellprice);
+    await fetchToUpdateUser(user.userInfo._id, sellprice, index);
+    user.invokeGetUserFetch();
   };
 
   //-- fetch to update user
-  const fetchToUpdateUser = (id, sellprice) => {
+  const fetchToUpdateUser = async (id, sellprice, index) => {
     const URL = `http://localhost:5000/user/${id}`;
     const token = localStorage.getItem('game-auth');
+
+    user.userInfo.inventory.splice(index, 1);
+
     const updateUser = async () => {
       const response = await fetch(URL, {
         method: 'PATCH',
@@ -54,7 +51,7 @@ function Inventory() {
       });
       await response.json();
     };
-    updateUser();
+    await updateUser();
   };
 
   const closeModal = () => {

@@ -21,23 +21,19 @@ function Shop() {
 
   //FUNCTIONS
   //--add inventory to user state
-  const addInventoryToUser = (e, price, inventorItem) => {
+  const addInventoryToUser = async (e, price, inventorItem) => {
     e.preventDefault();
     if (user.userInfo.gold >= price) {
-      user.setUserInfo({
-        ...user.userInfo,
-        inventory: [...user.userInfo.inventory, inventorItem],
-        gold: user.userInfo.gold - price,
-      });
       setShopMsg('Inventory sucessfully added.');
-      fetchToUpdateUser(user.userInfo._id, price, inventorItem);
+      await fetchToUpdateUser(user.userInfo._id, price, inventorItem);
+      user.invokeGetUserFetch();
     } else {
       setShopMsg("Sorry, but You don't have enough money.");
     }
   };
 
   //-- fetch to update user
-  const fetchToUpdateUser = (id, price, inventorItem) => {
+  const fetchToUpdateUser = async (id, price, inventorItem) => {
     const URL = `http://localhost:5000/user/${id}`;
     const token = localStorage.getItem('game-auth');
     const updateUser = async () => {
@@ -56,7 +52,7 @@ function Shop() {
 
       return response;
     };
-    updateUser();
+    await updateUser();
   };
 
   const closeModal = () => {

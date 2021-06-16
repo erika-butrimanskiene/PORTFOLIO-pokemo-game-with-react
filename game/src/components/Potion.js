@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { HandleShopContext } from '../pages/Shop';
 import { HandleSellContext } from '../pages/Inventory';
+import { SelectedInventoryContext } from '../pages/Arena';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
@@ -22,10 +23,29 @@ function Potion({
   const handleShop = useContext(HandleShopContext);
   //--handle sell
   const handleSell = useContext(HandleSellContext);
+  //--handle inventory to fight selection
+  const handleInventorySelection = useContext(SelectedInventoryContext);
 
-  let generatedId = nextId();
+  //REFS
+  const selectedStyle = useRef();
+
+  //FUNCTIONS
+  //-- handle inventory set
+  const selectPotion = () => {
+    handleInventorySelection.setSelectedPotion({ image, heals });
+  };
+
+  const selectPotionStyle = () => {
+    selectedStyle.current.style.border = '2px solid #aa0581';
+    selectedStyle.current.style.borderRadius = '15px';
+  };
+
+  const unselectPotionStyle = () => {
+    selectedStyle.current.style.border = 'none';
+  };
+
   const inventorItem = {
-    id: generatedId,
+    id: nextId(),
     type,
     heals,
     price,
@@ -34,9 +54,15 @@ function Potion({
   };
 
   return (
-    <div className='potion'>
+    <div
+      className='potion'
+      onClick={toArenaModal ? selectPotion : undefined}
+      onMouseEnter={toArenaModal ? selectPotionStyle : undefined}
+      onMouseLeave={toArenaModal ? unselectPotionStyle : undefined}
+    >
       <div className='potion__about'>
         <div
+          ref={selectedStyle}
           className='potion__icon'
           style={{
             backgroundImage: `url(http://localhost:5000/uploads/${image})`,

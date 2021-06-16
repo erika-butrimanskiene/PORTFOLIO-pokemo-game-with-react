@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { HandleShopContext } from '../pages/Shop';
 import { HandleSellContext } from '../pages/Inventory';
+import { SelectedInventoryContext } from '../pages/Arena';
 import nextId from 'react-id-generator';
 import Button from './Button';
 
@@ -25,9 +26,14 @@ function Weapon({
   //--handle sell
   const handleSell = useContext(HandleSellContext);
 
-  let generatedId = nextId();
+  //--handle inventory to fight selection
+  const handleInventorySelection = useContext(SelectedInventoryContext);
+
+  //REFS
+  const selectedStyle = useRef();
+
   const inventorItem = {
-    id: generatedId,
+    id: nextId(),
     type,
     name,
     damage,
@@ -37,10 +43,31 @@ function Weapon({
     image,
   };
 
+  //FUNCTIONS
+  //-- handle inventory set
+  const selectWeapon = () => {
+    handleInventorySelection.setSelectedWeapon({ image, damage });
+  };
+
+  const selectWeaponStyle = () => {
+    selectedStyle.current.style.border = '2px solid #aa0581';
+    selectedStyle.current.style.borderRadius = '15px';
+  };
+
+  const unselectWeaponStyle = () => {
+    selectedStyle.current.style.border = 'none';
+  };
+
   return (
-    <div className='weapon'>
+    <div
+      className='weapon'
+      onClick={toArenaModal ? selectWeapon : undefined}
+      onMouseEnter={toArenaModal ? selectWeaponStyle : undefined}
+      onMouseLeave={toArenaModal ? unselectWeaponStyle : undefined}
+    >
       <div className='weapon__about'>
         <div
+          ref={selectedStyle}
           className='weapon__icon'
           style={{
             backgroundImage: `url(http://localhost:5000/uploads/${image})`,

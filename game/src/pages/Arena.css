@@ -6,7 +6,17 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  align-content: center;
+  align-content: flex-start;
+}
+
+.arena-window__back {
+  width: 80%;
+  padding: 25px 0px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  color: white;
+  text-decoration: none;
 }
 
 .arena-window-heading {
@@ -16,6 +26,7 @@
 }
 
 .arena-window {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,10 +35,102 @@
   border-radius: 20px;
 }
 
+.arena-window__all-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arena-window__inventory-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .hit-button {
-  width: 50%;
+  width: 70%;
 }
 
 .arena-armor-button {
-  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border: none;
+  border-radius: 30px;
+  margin: 0px 10px;
+  width: calc(25% - 20px);
+  color: white;
+}
+
+.btn-blue {
+  background-color: rgb(31, 156, 228);
+}
+
+.btn-green {
+  background-color: rgb(8, 153, 80);
+}
+
+.btn-pink {
+  background-color: var(--second-color);
+}
+
+@media screen and (min-width: 768px) {
+  .arena-window {
+    flex-direction: row;
+    width: 90%;
+  }
+
+  .arena-window__back {
+    width: 90%;
+  }
+
+  .arena-window-heading {
+    padding: 25px 0px 65px 0px;
+  }
+
+  .arena-window__all-buttons {
+    width: 20%;
+  }
+
+  .arena-window__inventory-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .arena-armor-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
+    border: none;
+    border-radius: 30px;
+    margin: 10px 10px;
+    width: calc(50% - 20px);
+    color: white;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .arena-window {
+    width: 80%;
+  }
+
+  .arena-window__all-buttons {
+    width: 20%;
+  }
+
+  .arena-window__inventory-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .arena-window__back {
+    width: 80%;
+  }
 }

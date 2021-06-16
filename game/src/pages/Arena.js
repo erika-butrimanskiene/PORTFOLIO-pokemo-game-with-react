@@ -1,5 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserInfoContext } from '../App';
+import { Link } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { GiHealthPotion } from 'react-icons/gi';
+import { GiSwitchWeapon } from 'react-icons/gi';
+import { GiArmorUpgrade } from 'react-icons/gi';
 import './Arena.css';
 
 //COMPONENTS
@@ -10,13 +15,23 @@ import Modal from '../components/Modal';
 //PAGES
 import LoggedInUser from '../components/LoggedInUser';
 
+export const SelectedInventoryContext = React.createContext();
+
 function Arena() {
   //CONTEXTS
   //-- user
   const user = useContext(UserInfoContext);
   //STATES
+  //-- enemy to play
   const [enemyToPlay, setEnemyToPlay] = useState({});
-  console.log(enemyToPlay);
+  //-- selected armor
+  const [selectedArmor, setSelectedArmor] = useState({});
+
+  //-- selected weapon
+  const [selectedWeapon, setSelectedWeapon] = useState({});
+
+  //-- selected potion
+  const [selectedPotion, setSelectedPotion] = useState({});
 
   //-- select inventory msg
   const [selectMsg, setSelectMsg] = useState('');
@@ -58,50 +73,85 @@ function Arena() {
   };
 
   const openInventoryList = (inventor) => {
-    setSelectMsg('Choose Your Inventory');
+    setSelectMsg(`Select ${inventor}`);
     setInventoryType(inventor);
   };
 
   return (
     <main>
-      <div className='arena-window-wrapper'>
-        <h1 className='arena-window-heading'>LET'S GAME!</h1>
-        <div className='arena-window'>
-          <LoggedInUser
-            image={user.userInfo.image}
-            username={user.userInfo.username}
-            health={user.userInfo.health}
-            gold={user.userInfo.gold}
-            isArena={true}
-          />
-          <div
-            className='arena-armor-button'
-            onClick={() => openInventoryList('armor')}
-          >
-            <Button className='button btn-pink' text='ARMOR' />
+      <SelectedInventoryContext.Provider
+        value={{
+          selectedArmor,
+          setSelectedArmor,
+          selectedWeapon,
+          setSelectedWeapon,
+          selectedPotion,
+          setSelectedPotion,
+        }}
+      >
+        <div className='arena-window-wrapper'>
+          <Link className='arena-window__back' to='/'>
+            <AiOutlineArrowLeft size={25} />
+            Start Window
+          </Link>
+          <h1 className='arena-window-heading'>LET'S GAME!</h1>
+          <div className='arena-window'>
+            <LoggedInUser
+              image={user.userInfo.image}
+              username={user.userInfo.username}
+              health={user.userInfo.health}
+              gold={user.userInfo.gold}
+              isArena={true}
+            />
+            <div className='arena-window__all-buttons'>
+              <div className='arena-window__inventory-buttons'>
+                <div
+                  className='arena-armor-button btn-blue'
+                  onClick={() => openInventoryList('armor')}
+                >
+                  <GiArmorUpgrade size={30} />
+                </div>
+
+                <div
+                  className='arena-armor-button btn-green'
+                  onClick={() => openInventoryList('weapon')}
+                >
+                  <GiSwitchWeapon size={30} />
+                </div>
+
+                <div
+                  className='arena-armor-button btn-pink'
+                  onClick={() => openInventoryList('potion')}
+                >
+                  <GiHealthPotion size={30} />
+                </div>
+              </div>
+
+              <div className='hit-button'>
+                <Button className='button btn-red' text='HIT' />
+              </div>
+            </div>
+
+            {Object.keys(enemyToPlay).length !== 0 && (
+              <EnemyProfile
+                image={enemyToPlay.image}
+                enemyname={enemyToPlay.enemyname}
+                health={enemyToPlay.health}
+                damage={enemyToPlay.damage}
+              />
+            )}
           </div>
-          <div className='hit-button'>
-            <Button className='button btn-red' text='HIT ENEMY' />
-          </div>
-          {Object.keys(enemyToPlay).length !== 0 && (
-            <EnemyProfile
-              image={enemyToPlay.image}
-              enemyname={enemyToPlay.enemyname}
-              health={enemyToPlay.health}
-              damage={enemyToPlay.damage}
+
+          {selectMsg !== '' && (
+            <Modal
+              inventory={user.userInfo.inventory}
+              modalMsg={selectMsg}
+              handleCloseModal={closeModal}
+              inventoryType={inventoryType}
             />
           )}
         </div>
-
-        {selectMsg !== '' && (
-          <Modal
-            inventory={user.userInfo.inventory}
-            modalMsg={selectMsg}
-            handleCloseModal={closeModal}
-            inventoryType={inventoryType}
-          />
-        )}
-      </div>
+      </SelectedInventoryContext.Provider>
     </main>
   );
 }

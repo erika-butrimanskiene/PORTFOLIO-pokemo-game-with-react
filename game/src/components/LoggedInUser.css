@@ -8,14 +8,21 @@
 }
 
 .arena-window__player {
-  width: calc(100% - 50px);
-  margin: 25px 25px 10px 25px;
-  padding: 10px 35px;
+  width: calc(100% - 30px);
+  margin: 15px 15px 15px 15px;
+  padding: 10px 20px;
   border-radius: 20px 20px 20px 20px;
   background-color: var(--second-color);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.arena-window__player-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .game-window__player-username {
@@ -27,6 +34,22 @@
   margin: 30px 0px 20px 0px;
   height: 100px;
   width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+
+.arena-window__player-avatar {
+  margin: 30px 0px 20px 0px;
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+
+.game-window__player-inventor {
+  margin: 10px 0px 10px 0px;
+  height: 50px;
+  width: 50px;
   background-position: center;
   background-size: cover;
 }
@@ -71,6 +94,17 @@
     width: 150px;
   }
 
+  .arena-window__player {
+    width: calc(40% - 30px);
+    height: 40vh;
+    justify-content: center;
+  }
+
+  .arena-window__player-avatar {
+    height: 100px;
+    width: 100px;
+  }
+
   .game-window__player-status {
     padding: 10px 30px;
   }
@@ -79,6 +113,10 @@
 @media screen and (min-width: 1025px) {
   .game-window__player {
     width: 40%;
+  }
+  .arena-window__player {
+    width: calc(40% - 30px);
+    height: 50vh;
   }
 
   .game-window__player-avatar {

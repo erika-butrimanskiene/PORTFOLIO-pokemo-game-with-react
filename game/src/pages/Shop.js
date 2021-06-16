@@ -53,8 +53,8 @@ function Shop() {
           gold: user.userInfo.gold - price,
         }),
       });
-      const data = await response.json();
-      console.log(data);
+
+      return response;
     };
     updateUser();
   };

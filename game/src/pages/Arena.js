@@ -36,6 +36,10 @@ function Arena() {
   const [deadMsg, setDeadMsg] = useState('');
   //-- inventory type to modal
   const [inventoryType, setInventoryType] = useState('');
+  //-- player avatar animation class
+  const [playerAnimationClass, setPlayerAnimationClass] = useState('');
+  //-- enemy avatar animation class
+  const [enemyAnimationClass, setEnemyAnimationClass] = useState('');
 
   //EFFECTS
   useEffect(() => {
@@ -88,6 +92,16 @@ function Arena() {
   const handleHit = () => {
     let enemyHit = enemyToPlay;
     let playerHit = user.userInfo;
+
+    setEnemyAnimationClass('arena-window__enemy-avatar-animation');
+    setTimeout(() => setEnemyAnimationClass(''), 1000);
+
+    setTimeout(
+      () => setPlayerAnimationClass('arena-window__player-avatar-animation'),
+      500
+    );
+    setTimeout(() => setPlayerAnimationClass(''), 1500);
+
     handlePlayerHit(playerHit, enemyHit);
   };
 
@@ -127,7 +141,7 @@ function Arena() {
         setEnemyToPlay({ ...enemyHit });
       } else {
         setDeadMsg(
-          'DEAD. You health is restored to 100 and inventory list is emptied.'
+          'DEAD. Your health is restored to 100 and inventory list is emptied.'
         );
 
         playerHit.health = 100;
@@ -157,6 +171,7 @@ function Arena() {
 
   const enemyHitDamage = (enemyHit) => {
     let randomSpecialPercentage = Math.floor(Math.random() * 100);
+
     if (
       selectedWeapon.special === '20% chance to block attack' &&
       randomSpecialPercentage <= 20
@@ -246,25 +261,26 @@ function Arena() {
               health={user.userInfo.health}
               gold={user.userInfo.gold}
               isArena={true}
+              playerAnimationClass={playerAnimationClass}
             />
             <div className='arena-window__all-buttons'>
               <div className='arena-window__inventory-buttons'>
                 <div
-                  className='arena-armor-button btn-blue'
+                  className='arena-armor-button button-blue'
                   onClick={() => openInventoryList('armor')}
                 >
                   <GiArmorUpgrade size={30} />
                 </div>
 
                 <div
-                  className='arena-armor-button btn-green'
+                  className='arena-armor-button button-green'
                   onClick={() => openInventoryList('weapon')}
                 >
                   <GiSwitchWeapon size={30} />
                 </div>
 
                 <div
-                  className='arena-armor-button btn-pink'
+                  className='arena-armor-button button-pink'
                   onClick={() => openInventoryList('potion')}
                 >
                   <GiHealthPotion size={30} />
@@ -282,6 +298,7 @@ function Arena() {
                 enemyname={enemyToPlay.enemyname}
                 health={enemyToPlay.health}
                 damage={enemyToPlay.damage}
+                enemyAnimationClass={enemyAnimationClass}
               />
             )}
           </div>
@@ -301,7 +318,11 @@ function Arena() {
             />
           )}
           {deadMsg !== '' && (
-            <Modal modalMsg={deadMsg} handleCloseModal={closeDeadInfoModal} />
+            <Modal
+              modalMsg={deadMsg}
+              handleCloseModal={closeDeadInfoModal}
+              deadMessageModal={true}
+            />
           )}
         </div>
       </SelectedInventoryContext.Provider>

@@ -1,16 +1,27 @@
 import React from 'react';
 import InventoryList from './InventoryList';
+import ProfileEditingForm from './ProfileEditingForm';
 import './Modal.css';
 
-function Modal({ handleCloseModal, modalMsg, inventory, inventoryType }) {
+function Modal({
+  handleCloseModal,
+  modalMsg,
+  inventory,
+  inventoryType,
+  deadMessageModal,
+  editProfileModal,
+}) {
   return (
-    <div id='myModal' className='modal' onClick={handleCloseModal}>
+    <div
+      id='myModal'
+      className='modal'
+      onClick={editProfileModal ? undefined : handleCloseModal}
+    >
       <div className='modal__content'>
         <div className='modal-close' onClick={handleCloseModal}>
           <span className='modal-close__span'>&times;</span>
         </div>
-        {modalMsg ===
-          'DEAD. You health is restored to 100 and inventory list is emptied.' && (
+        {deadMessageModal && (
           <div
             className='arena-window__dead-img'
             style={{
@@ -18,7 +29,7 @@ function Modal({ handleCloseModal, modalMsg, inventory, inventoryType }) {
             }}
           ></div>
         )}
-        <div className='modal-text'>{modalMsg}</div>
+        {!editProfileModal && <div className='modal-text'>{modalMsg}</div>}
         {inventory !== undefined && (
           <div className='arena-window__player-inventory'>
             <InventoryList
@@ -28,6 +39,10 @@ function Modal({ handleCloseModal, modalMsg, inventory, inventoryType }) {
               toArenaModal={true}
             />
           </div>
+        )}
+
+        {editProfileModal && (
+          <ProfileEditingForm handleCloseEditModal={handleCloseModal} />
         )}
       </div>
     </div>

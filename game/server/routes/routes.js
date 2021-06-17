@@ -24,6 +24,7 @@ router.get('/user', UserMiddleware.authenticate, UserController.getUser);
 router.patch(
   '/user/:id',
   UserMiddleware.authenticate,
+  UserMiddleware.editUserProfileValidations,
   UserController.updateUser
 );
 

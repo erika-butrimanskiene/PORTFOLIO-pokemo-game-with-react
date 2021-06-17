@@ -9,14 +9,21 @@
 }
 
 .btn-pink {
-  background-color: var(--accent-color);
+  background-color: var(--second-color);
   color: white;
+  padding: 5px;
 }
 
 .btn-red {
   background-color: rgb(204, 1, 1);
   color: white;
-  padding: 15px;
+  padding: 5px;
+}
+
+.btn-blue {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 5px;
 }
 
 .btn-white {

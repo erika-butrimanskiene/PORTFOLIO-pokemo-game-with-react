@@ -1,11 +1,20 @@
 import React, { useContext } from 'react';
 import { RiCoinsFill } from 'react-icons/ri';
+import { FiEdit } from 'react-icons/fi';
 import { SelectedInventoryContext } from '../pages/Arena';
 import ProgressBar from '../components/ProgressBar';
 
 import './LoggedInUser.css';
 
-function LoggedInUser({ image, username, health, gold, isArena }) {
+function LoggedInUser({
+  image,
+  username,
+  health,
+  gold,
+  isArena,
+  editClick,
+  playerAnimationClass,
+}) {
   //CONTEXTS
   //-- selected inventory
   const selectedInventory = useContext(SelectedInventoryContext);
@@ -19,10 +28,15 @@ function LoggedInUser({ image, username, health, gold, isArena }) {
             : 'game-window__player-details'
         }
       >
+        {!isArena && (
+          <div className='game-window__edit-profile'>
+            <FiEdit size={30} onClick={editClick} />
+          </div>
+        )}
         <div
           className={
             isArena
-              ? 'arena-window__player-avatar-username'
+              ? `arena-window__player-avatar-username ${playerAnimationClass}`
               : 'game-window__player-avatar-username'
           }
         >

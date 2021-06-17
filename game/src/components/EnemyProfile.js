@@ -4,13 +4,19 @@ import './EnemyProfile.css';
 
 import ProgressBar from '../components/ProgressBar';
 
-function EnemyProfile({ image, enemyname, health, damage }) {
+function EnemyProfile({
+  image,
+  enemyname,
+  health,
+  damage,
+  enemyAnimationClass,
+}) {
   return (
     <div className='arena-window__enemy'>
       <div>
         {image && (
           <div
-            className='arena-window__enemy-avatar'
+            className={`arena-window__enemy-avatar ${enemyAnimationClass}`}
             style={{
               backgroundImage: `url(http://localhost:5000/uploads/${image})`,
             }}

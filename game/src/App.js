@@ -10,6 +10,7 @@ import Arena from './pages/Arena';
 import Board from './pages/Board';
 import ProtectedRoute from './pages/ProtectedRoute';
 import PlayerDetail from './pages/PlayerDetail';
+import Spinner from './components/Spinner';
 
 import './App.css';
 
@@ -22,11 +23,16 @@ function App() {
   const [authentication, setAuthentication] = useState(false);
   //-- logged in user info
   const [userInfo, setUserInfo] = useState({});
+  //-- loading
+  const [loading, setLoading] = useState(true);
 
   //EFFECTS
   //-- to set authentication and set userInfo
   useEffect(() => {
+    const token = localStorage.getItem('game-auth');
+    if (token) setAuthentication(true);
     invokeGetUserFetch();
+    setLoading(false);
   }, []);
 
   //FUNCTIONS
@@ -45,7 +51,7 @@ function App() {
       const data = await response.json();
       await setUserInfo(data);
     };
-    if (token) setAuthentication(true);
+
     if (token) {
       getUser();
     }
@@ -53,43 +59,49 @@ function App() {
 
   return (
     <div className='App'>
-      <AuthenticationContext.Provider
-        value={{ authentication, setAuthentication }}
-      >
-        <UserInfoContext.Provider
-          value={{
-            userInfo,
-            setUserInfo,
-            invokeGetUserFetch,
-          }}
+      {loading ? (
+        <div className='spinner-container'>
+          <Spinner />
+        </div>
+      ) : (
+        <AuthenticationContext.Provider
+          value={{ authentication, setAuthentication }}
         >
-          <Router>
-            <Switch>
-              <Route exact path='/signUp'>
-                <SignUp />
-              </Route>
-              <ProtectedRoute exact path='/'>
-                <GameWindow />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/shop'>
-                <Shop />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/inventory'>
-                <Inventory />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/arena'>
-                <Arena />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/board'>
-                <Board />
-              </ProtectedRoute>
-              <ProtectedRoute exact path='/board/:username'>
-                <PlayerDetail />
-              </ProtectedRoute>
-            </Switch>
-          </Router>
-        </UserInfoContext.Provider>
-      </AuthenticationContext.Provider>
+          <UserInfoContext.Provider
+            value={{
+              userInfo,
+              setUserInfo,
+              invokeGetUserFetch,
+            }}
+          >
+            <Router>
+              <Switch>
+                <Route exact path='/signUp'>
+                  <SignUp />
+                </Route>
+                <ProtectedRoute exact path='/'>
+                  <GameWindow />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/shop'>
+                  <Shop />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/inventory'>
+                  <Inventory />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/arena'>
+                  <Arena />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/board'>
+                  <Board />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/board/:username'>
+                  <PlayerDetail />
+                </ProtectedRoute>
+              </Switch>
+            </Router>
+          </UserInfoContext.Provider>
+        </AuthenticationContext.Provider>
+      )}
     </div>
   );
 }

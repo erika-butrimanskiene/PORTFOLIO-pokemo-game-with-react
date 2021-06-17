@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserInfoContext } from '../App';
 import { AuthenticationContext } from '../App';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,9 @@ import { GiBattleGear } from 'react-icons/gi';
 import { GiBattleMech } from 'react-icons/gi';
 import { AiOutlineShop } from 'react-icons/ai';
 import { BsClipboardData } from 'react-icons/bs';
+
+//COMPONENTS
+import Modal from '../components/Modal';
 
 import './GameWindow.css';
 
@@ -18,14 +21,15 @@ function GameWindow() {
   const user = useContext(UserInfoContext);
   //-- authentification
   const auth = useContext(AuthenticationContext);
+  //STATES
+  //-- edit modal msg
+  const [editMsg, setEditMsg] = useState('');
 
   //ENDPOINTS
-
   const URL = 'http://localhost:5000/user/logout';
 
   //FUNCTIONS
   //-- handle user logout
-
   const handleLogout = async () => {
     let token = localStorage.getItem('game-auth');
     const response = await fetch(URL, {
@@ -41,6 +45,16 @@ function GameWindow() {
       auth.setAuthentication(false);
     }
   };
+
+  //-- handle profile edit
+  const handleProfileEdit = () => {
+    setEditMsg('Edit Your Profile');
+  };
+
+  const closeEditModal = () => {
+    setEditMsg('');
+  };
+
   return (
     <main>
       <div className='game-window-wrapper'>
@@ -52,6 +66,7 @@ function GameWindow() {
             health={user.userInfo.health}
             gold={user.userInfo.gold}
             isArena={false}
+            editClick={handleProfileEdit}
           />
 
           <div className='game-window__links'>
@@ -88,6 +103,14 @@ function GameWindow() {
             </div>
           </div>
         </div>
+
+        {editMsg !== '' && (
+          <Modal
+            modalMsg={editMsg}
+            handleCloseModal={closeEditModal}
+            editProfileModal={true}
+          />
+        )}
       </div>
     </main>
   );

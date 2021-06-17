@@ -1,20 +1,19 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { UserInfoContext } from '../App';
 import { Link } from 'react-router-dom';
+import './Arena.css';
+
+//ICONS
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { GiHealthPotion } from 'react-icons/gi';
 import { GiSwitchWeapon } from 'react-icons/gi';
 import { GiArmorUpgrade } from 'react-icons/gi';
-import './Arena.css';
 
 //COMPONENTS
 import Button from '../components/Button';
 import EnemyProfile from '../components/EnemyProfile';
 import Modal from '../components/Modal';
-
-//PAGES
 import LoggedInUser from '../components/LoggedInUser';
-// import { RiSurroundSoundLine } from 'react-icons/ri';
 
 export const SelectedInventoryContext = React.createContext();
 
@@ -27,14 +26,14 @@ function Arena() {
   const [enemyToPlay, setEnemyToPlay] = useState({});
   //-- selected armor
   const [selectedArmor, setSelectedArmor] = useState({});
-
   //-- selected weapon
   const [selectedWeapon, setSelectedWeapon] = useState({});
-
   //-- select inventory msg
   const [selectMsg, setSelectMsg] = useState('');
   //-- is inventory selected
   const [inventoryUnselectedMsg, setInventoryUnselectedMsg] = useState('');
+  //-- dead msg
+  const [deadMsg, setDeadMsg] = useState('');
   //-- inventory type to modal
   const [inventoryType, setInventoryType] = useState('');
 
@@ -54,7 +53,7 @@ function Arena() {
       },
       {
         enemyname: 'Troll',
-        image: 'troll_21.png',
+        image: 'troll_06.png',
         damage: 8,
         health: 100,
       },
@@ -77,59 +76,115 @@ function Arena() {
     setInventoryUnselectedMsg('');
   };
 
+  const closeDeadInfoModal = () => {
+    setDeadMsg('');
+  };
+
   const openInventoryList = (inventor) => {
     setSelectMsg(`Select ${inventor}`);
     setInventoryType(inventor);
   };
 
   const handleHit = () => {
-    let enemyToPlayHit = enemyToPlay;
-    let userHit = user.userInfo;
-    handlePlayerHit(userHit, enemyToPlayHit);
+    let enemyHit = enemyToPlay;
+    let playerHit = user.userInfo;
+    handlePlayerHit(playerHit, enemyHit);
   };
 
-  const handlePlayerHit = (userHit, enemyToPlayHit) => {
+  const handlePlayerHit = (playerHit, enemyHit) => {
     if (Object.keys(selectedWeapon).length !== 0) {
-      let randomDamage = Math.floor(Math.random() * selectedWeapon.damage);
-      enemyToPlayHit.health = enemyToPlayHit.health - randomDamage;
-      handleEnemyHit(userHit, enemyToPlayHit);
-    } else {
-      setInventoryUnselectedMsg('Please select weapon.');
-    }
-  };
-
-  const handleEnemyHit = async (userHit, enemyToPlayHit) => {
-    if (Object.keys(selectedWeapon).length !== 0) {
-      if (enemyToPlayHit.health > 0) {
-        let randomDamage = Math.floor(Math.random() * enemyToPlayHit.damage);
-        let randomDefence;
-        let randomAmountOfGold = Math.floor(Math.random() * 10);
-
-        if (Object.keys(selectedArmor).length !== 0) {
-          randomDefence = Math.floor(Math.random() * selectedArmor.defence);
-        } else {
-          randomDefence = 0;
-        }
-
-        if (randomDefence - randomDamage < 0) {
-          userHit.health = userHit.health - randomDamage + randomDefence;
-        }
-
-        if (userHit.health > 0) {
-          userHit.gold = userHit.gold + randomAmountOfGold;
-          await fetchToUpdateUser(userHit);
-          user.invokeGetUserFetch();
-          setEnemyToPlay({ ...enemyToPlayHit });
-        } else {
-          console.log('REIKIA PADARYTI KO NEPABAIGEI');
-        }
-      } else {
-        generateEnemyToPlay();
-      }
+      let playerDamage = playerHitDamage();
+      enemyHit.health = enemyHit.health - playerDamage;
+      handleEnemyHit(playerHit, enemyHit);
     } else {
       setInventoryUnselectedMsg(
         `Please select weapon. And don't forget armors!`
       );
+    }
+  };
+
+  const handleEnemyHit = async (playerHit, enemyHit) => {
+    if (enemyHit.health > 0) {
+      let randomAmountOfGold = Math.floor(Math.random() * 10);
+      let randomDefence = armorDefence();
+      let specialHeal = specialPlayerHeal();
+      let enemyDamage = enemyHitDamage(enemyHit);
+
+      //damage only if defence is smaller than enemy damage
+      if (randomDefence - enemyDamage < 0) {
+        playerHit.health =
+          playerHit.health + specialHeal - enemyDamage + randomDefence;
+      }
+      // gold to player
+      playerHit.gold = playerHit.gold + randomAmountOfGold;
+
+      if (playerHit.health > 0) {
+        if (playerHit.health > 100) {
+          playerHit.health = 100;
+        }
+        await fetchToUpdateUser(playerHit);
+        user.invokeGetUserFetch();
+        setEnemyToPlay({ ...enemyHit });
+      } else {
+        setDeadMsg(
+          'DEAD. You health is restored to 100 and inventory list is emptied.'
+        );
+
+        playerHit.health = 100;
+        playerHit.inventory = [];
+        setSelectedArmor({});
+        setSelectedWeapon({});
+        await fetchToUpdateUser(playerHit);
+        user.invokeGetUserFetch();
+      }
+    } else {
+      generateEnemyToPlay();
+    }
+  };
+
+  const playerHitDamage = () => {
+    let randomDamage = Math.floor(Math.random() * selectedWeapon.damage);
+    let randomSpecialPercentage = Math.floor(Math.random() * 100);
+    if (
+      selectedWeapon.special === '30% chance to do double damage' &&
+      randomSpecialPercentage <= 30
+    ) {
+      return randomDamage * 2;
+    } else {
+      return randomDamage;
+    }
+  };
+
+  const enemyHitDamage = (enemyHit) => {
+    let randomSpecialPercentage = Math.floor(Math.random() * 100);
+    if (
+      selectedWeapon.special === '20% chance to block attack' &&
+      randomSpecialPercentage <= 20
+    ) {
+      return 0;
+    } else {
+      return Math.floor(Math.random() * enemyHit.damage);
+    }
+  };
+
+  const specialPlayerHeal = () => {
+    let randomSpecialPercentage = Math.floor(Math.random() * 100);
+    if (
+      selectedWeapon.special ===
+        '40% chance to heal hero on enemy attack by 10hit points' &&
+      randomSpecialPercentage <= 40
+    ) {
+      return 10;
+    } else {
+      return 0;
+    }
+  };
+
+  const armorDefence = () => {
+    if (Object.keys(selectedArmor).length !== 0) {
+      return Math.floor(Math.random() * selectedArmor.defence);
+    } else {
+      return 0;
     }
   };
 
@@ -141,6 +196,9 @@ function Arena() {
       inventory: user.userInfo.inventory,
       health: user.userInfo.health + heals,
     };
+    if (userToUpdate.health > 100) {
+      userToUpdate.health = 100;
+    }
     await fetchToUpdateUser(userToUpdate);
     user.invokeGetUserFetch();
   };
@@ -241,6 +299,9 @@ function Arena() {
               modalMsg={inventoryUnselectedMsg}
               handleCloseModal={closeUnselectedInfoModal}
             />
+          )}
+          {deadMsg !== '' && (
+            <Modal modalMsg={deadMsg} handleCloseModal={closeDeadInfoModal} />
           )}
         </div>
       </SelectedInventoryContext.Provider>

@@ -35,6 +35,47 @@
   border-radius: 20px;
 }
 
+.arena-window__player {
+  width: calc(100% - 30px);
+  margin: 15px 15px 15px 15px;
+  padding: 10px 20px;
+  border-radius: 20px 20px 20px 20px;
+  background-color: var(--second-color);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.arena-window__player-details {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arena-window__player-avatar-username {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arena-window__player-avatar {
+  margin: 30px 0px 20px 0px;
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
+}
+
+.arena-window__player-inventor {
+  margin: 10px 0px 10px 0px;
+  height: 60px;
+  width: 60px;
+  background-position: center;
+  background-size: cover;
+}
+
 .arena-window__all-buttons {
   width: 100%;
   display: flex;
@@ -52,6 +93,14 @@
   width: 70%;
 }
 
+.hit-button:hover {
+  transform: scale(1.15);
+}
+
+.arena-armor-button:hover {
+  transform: scale(1.15);
+}
+
 .arena-armor-button {
   display: flex;
   justify-content: center;
@@ -64,6 +113,11 @@
   color: white;
 }
 
+.hover-label {
+  color: black;
+  width: 100%;
+}
+
 .btn-blue {
   background-color: rgb(31, 156, 228);
 }
@@ -74,6 +128,14 @@
 
 .btn-pink {
   background-color: var(--second-color);
+}
+
+.arena-window__dead-img {
+  margin: 30px 0px 20px 0px;
+  height: 100px;
+  width: 100px;
+  background-position: center;
+  background-size: cover;
 }
 
 @media screen and (min-width: 768px) {
@@ -90,7 +152,23 @@
     padding: 25px 0px 65px 0px;
   }
 
+  .arena-window__player-details {
+    margin-bottom: 15px;
+  }
+
+  .arena-window__player {
+    width: calc(40% - 30px);
+    height: 40vh;
+    justify-content: center;
+  }
+
+  .arena-window__player-avatar {
+    height: 100px;
+    width: 100px;
+  }
+
   .arena-window__all-buttons {
+    margin-top: 10px;
     width: 20%;
   }
 
@@ -119,6 +197,28 @@
     width: 80%;
   }
 
+  .arena-window__player {
+    width: calc(40% - 30px);
+    height: 50vh;
+  }
+
+  .arena-window__player-avatar {
+    height: 140px;
+    width: 140px;
+  }
+
+  .arena-window__player-inventory {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .arena-window__player-inventor {
+    height: 70px;
+    width: 70px;
+  }
+
   .arena-window__all-buttons {
     width: 20%;
   }
@@ -126,8 +226,8 @@
   .arena-window__inventory-buttons {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    /* flex-direction: row;
+    justify-content: space-between; */
   }
 
   .arena-window__back {

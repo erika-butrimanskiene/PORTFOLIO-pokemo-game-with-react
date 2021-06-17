@@ -25,7 +25,7 @@ function Weapons() {
           toArenaModal={false}
         />
         <Weapon
-          image={'arrow-bow.png'}
+          image={'arrow-bow-good.png'}
           name={'Bow'}
           damage={6}
           price={300}

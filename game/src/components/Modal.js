@@ -9,6 +9,15 @@ function Modal({ handleCloseModal, modalMsg, inventory, inventoryType }) {
         <div className='modal-close' onClick={handleCloseModal}>
           <span className='modal-close__span'>&times;</span>
         </div>
+        {modalMsg ===
+          'DEAD. You health is restored to 100 and inventory list is emptied.' && (
+          <div
+            className='arena-window__dead-img'
+            style={{
+              backgroundImage: `url(http://localhost:5000/uploads/rip.png)`,
+            }}
+          ></div>
+        )}
         <div className='modal-text'>{modalMsg}</div>
         {inventory !== undefined && (
           <div className='arena-window__player-inventory'>

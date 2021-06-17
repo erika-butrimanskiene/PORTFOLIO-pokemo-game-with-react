@@ -22,7 +22,6 @@ function App() {
   const [authentication, setAuthentication] = useState(false);
   //-- logged in user info
   const [userInfo, setUserInfo] = useState({});
-  console.log(userInfo);
 
   //EFFECTS
   //-- to set authentication and set userInfo
@@ -50,7 +49,6 @@ function App() {
     if (token) {
       getUser();
     }
-    console.log('state updated');
   };
 
   return (

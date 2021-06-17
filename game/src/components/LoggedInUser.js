@@ -45,7 +45,7 @@ function LoggedInUser({ image, username, health, gold, isArena }) {
           <div>
             {Object.keys(selectedInventory.selectedWeapon).length !== 0 && (
               <div
-                className='game-window__player-inventor'
+                className='arena-window__player-inventor'
                 style={{
                   backgroundImage: `url(http://localhost:5000/uploads/${selectedInventory.selectedWeapon.image})`,
                 }}
@@ -53,7 +53,7 @@ function LoggedInUser({ image, username, health, gold, isArena }) {
             )}
             {Object.keys(selectedInventory.selectedArmor).length !== 0 && (
               <div
-                className='game-window__player-inventor'
+                className='arena-window__player-inventor'
                 style={{
                   backgroundImage: `url(http://localhost:5000/uploads/${selectedInventory.selectedArmor.image})`,
                 }}

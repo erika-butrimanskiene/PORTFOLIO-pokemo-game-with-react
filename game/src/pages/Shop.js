@@ -24,9 +24,25 @@ function Shop() {
   const addInventoryToUser = async (e, price, inventorItem) => {
     e.preventDefault();
     if (user.userInfo.gold >= price) {
-      setShopMsg('Inventory sucessfully added.');
-      await fetchToUpdateUser(user.userInfo._id, price, inventorItem);
-      user.invokeGetUserFetch();
+      if (inventorItem.type !== 'potion') {
+        console.log('test');
+        const find = user.userInfo.inventory.find(
+          (item) => item.name === inventorItem.name
+        );
+        console.log(find);
+
+        if (find !== undefined) {
+          setShopMsg('You already have this item at your inventory list.');
+        } else {
+          setShopMsg('Inventory sucessfully added.');
+          await fetchToUpdateUser(user.userInfo._id, price, inventorItem);
+          user.invokeGetUserFetch();
+        }
+      } else {
+        setShopMsg('Inventory sucessfully added.');
+        await fetchToUpdateUser(user.userInfo._id, price, inventorItem);
+        user.invokeGetUserFetch();
+      }
     } else {
       setShopMsg("Sorry, but You don't have enough money.");
     }

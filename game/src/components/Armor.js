@@ -8,6 +8,7 @@ import Button from './Button';
 import './Armor.css';
 
 function Armor({
+  name,
   defence,
   price,
   sellprice,
@@ -33,6 +34,7 @@ function Armor({
 
   const inventorItem = {
     id: nextId(),
+    name,
     type,
     defence,
     price,

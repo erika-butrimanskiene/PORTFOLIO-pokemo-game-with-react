@@ -98,6 +98,13 @@
   }
 }
 
+.arena-window__player-inventory {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .arena-window__player-inventor {
   margin: 10px 0px 10px 0px;
   height: 60px;
@@ -240,6 +247,7 @@
   .arena-window__player-inventory {
     width: 100%;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
   }

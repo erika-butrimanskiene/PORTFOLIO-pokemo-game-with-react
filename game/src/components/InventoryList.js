@@ -21,12 +21,13 @@ function InventoryList({
 
             if (
               (inventoryItem.type === 'armor' && inventoryType === 'armor') ||
-              inventoryType === 'all'
+              (inventoryItem.type === 'armor' && inventoryType === 'all')
             ) {
               returnItem = (
                 <Armor
                   key={index}
                   index={index}
+                  name={inventoryItem.name}
                   image={inventoryItem.image}
                   defence={inventoryItem.defence}
                   price={inventoryItem.price}
@@ -41,7 +42,7 @@ function InventoryList({
 
             if (
               (inventoryItem.type === 'weapon' && inventoryType === 'weapon') ||
-              inventoryType === 'all'
+              (inventoryItem.type === 'weapon' && inventoryType === 'all')
             ) {
               returnItem = (
                 <Weapon
@@ -63,7 +64,7 @@ function InventoryList({
 
             if (
               (inventoryItem.type === 'potion' && inventoryType === 'potion') ||
-              inventoryType === 'all'
+              (inventoryItem.type === 'potion' && inventoryType === 'all')
             ) {
               returnItem = (
                 <Potion

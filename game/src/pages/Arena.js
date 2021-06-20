@@ -93,20 +93,20 @@ function Arena() {
     let enemyHit = enemyToPlay;
     let playerHit = user.userInfo;
 
-    setEnemyAnimationClass('arena-window__enemy-avatar-animation');
-    setTimeout(() => setEnemyAnimationClass(''), 1000);
-
-    setTimeout(
-      () => setPlayerAnimationClass('arena-window__player-avatar-animation'),
-      500
-    );
-    setTimeout(() => setPlayerAnimationClass(''), 1500);
-
     handlePlayerHit(playerHit, enemyHit);
   };
 
   const handlePlayerHit = (playerHit, enemyHit) => {
     if (Object.keys(selectedWeapon).length !== 0) {
+      setEnemyAnimationClass('arena-window__enemy-avatar-animation');
+      setTimeout(() => setEnemyAnimationClass(''), 1000);
+
+      setTimeout(
+        () => setPlayerAnimationClass('arena-window__player-avatar-animation'),
+        500
+      );
+      setTimeout(() => setPlayerAnimationClass(''), 1500);
+
       let playerDamage = playerHitDamage();
       enemyHit.health = enemyHit.health - playerDamage;
       handleEnemyHit(playerHit, enemyHit);

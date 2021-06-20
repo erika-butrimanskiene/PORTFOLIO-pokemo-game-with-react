@@ -13,6 +13,7 @@ function Armors() {
       <div className='armors-items'>
         <Armor
           image={'icons8-body-armor-100.png'}
+          name={'Armor3'}
           defence={3}
           price={50}
           sellprice={10}
@@ -23,6 +24,7 @@ function Armors() {
         />
         <Armor
           image={'icons8-body-armor-100.png'}
+          name={'Armor7'}
           defence={7}
           price={250}
           sellprice={100}
@@ -33,6 +35,7 @@ function Armors() {
         />
         <Armor
           image={'icons8-body-armor-100.png'}
+          name={'Armor8'}
           defence={8}
           price={800}
           sellprice={300}

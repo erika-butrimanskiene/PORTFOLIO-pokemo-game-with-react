@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { UserInfoContext } from '../App';
 import { Link } from 'react-router-dom';
 import './Arena.css';
+
+//CONTEXTS IMPORT
+import { UserInfoContext } from '../App';
 
 //ICONS
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -21,6 +23,7 @@ function Arena() {
   //CONTEXTS
   //-- user
   const user = useContext(UserInfoContext);
+
   //STATES
   //-- enemy to play
   const [enemyToPlay, setEnemyToPlay] = useState({});
@@ -30,11 +33,11 @@ function Arena() {
   const [selectedWeapon, setSelectedWeapon] = useState({});
   //-- select inventory msg
   const [selectMsg, setSelectMsg] = useState('');
-  //-- is inventory selected
+  //-- is inventory unselected
   const [inventoryUnselectedMsg, setInventoryUnselectedMsg] = useState('');
   //-- dead msg
   const [deadMsg, setDeadMsg] = useState('');
-  //-- inventory type to modal
+  //-- inventory type to modal for filtering
   const [inventoryType, setInventoryType] = useState('');
   //-- player avatar animation class
   const [playerAnimationClass, setPlayerAnimationClass] = useState('');

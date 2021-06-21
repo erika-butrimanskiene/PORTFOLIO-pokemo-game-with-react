@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import './Login.css';
+
+//CONTEXTS IMPORT
 import { AuthenticationContext } from '../App';
 
+//COMPONENTS
 import Button from '../components/Button';
-
-import './Login.css';
 
 function Login() {
   //STATES
@@ -19,7 +21,6 @@ function Login() {
   const auth = useContext(AuthenticationContext);
 
   //ENDPOINTS
-
   const URL = 'http://localhost:5000/user/login';
 
   //FUNCTIONS
@@ -56,7 +57,6 @@ function Login() {
   };
 
   //-- handle enter on keyup
-
   const handleEnter = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();

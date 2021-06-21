@@ -1,16 +1,10 @@
 import React from 'react';
-
 import './EnemyProfile.css';
 
+//COMPONENTS
 import ProgressBar from '../components/ProgressBar';
 
-function EnemyProfile({
-  image,
-  enemyname,
-  health,
-  damage,
-  enemyAnimationClass,
-}) {
+function EnemyProfile({ image, enemyname, health, enemyAnimationClass }) {
   return (
     <div className='arena-window__enemy'>
       <div>

@@ -52,7 +52,7 @@ const logout = async (req, res) => {
   let user = req.user;
   try {
     await user.update({ $pull: { sessionTokens: { token } } });
-    res.json('Successfull logout');
+    res.json('Successfully logout');
   } catch (err) {
     res.status(400).json(err);
   }

@@ -1,9 +1,10 @@
 import React from 'react';
+import './ArmorsForShop.css';
+
+//COMPONENTS
 import Armor from './Armor';
 
-import './Armors.css';
-
-function Armors() {
+function ArmorsForShop() {
   return (
     <div className='armors-wrapper'>
       <h2 className='armors-heading'>Armors</h2>
@@ -49,4 +50,4 @@ function Armors() {
   );
 }
 
-export default Armors;
+export default ArmorsForShop;

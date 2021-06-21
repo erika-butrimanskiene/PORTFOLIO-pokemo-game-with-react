@@ -2,7 +2,6 @@ const router = require('express').Router();
 
 // Controllers
 const UserController = require('../user/userController');
-
 // Middlewares
 const UserMiddleware = require('../user/middleWare');
 
@@ -17,7 +16,6 @@ router.post(
   UserMiddleware.loginValidations,
   UserController.login
 );
-
 router.get('/user/logout', UserMiddleware.authenticate, UserController.logout);
 
 router.get('/user', UserMiddleware.authenticate, UserController.getUser);

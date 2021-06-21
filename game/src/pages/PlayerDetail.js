@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { RiCoinsFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
+import './PlayerDetail.css';
+
+//ICONS
+import { RiCoinsFill } from 'react-icons/ri';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+
+//COMPONENTS
 import ProgressBar from '../components/ProgressBar';
 import PlayerDetailInventory from '../components/PlayerDetailInventory';
-
-import './PlayerDetail.css';
 
 function PlayerDetail() {
   //STATES

@@ -1,4 +1,6 @@
 import React from 'react';
+
+//COMPONENTS
 import Armor from '../components/Armor';
 import Weapon from '../components/Weapon';
 import Potion from '../components/Potion';

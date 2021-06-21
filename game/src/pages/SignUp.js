@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import Button from '../components/Button';
+import React, { useState, useRef } from 'react';
 import './SignUp.css';
+
+//COMPONENTS
+import Button from '../components/Button';
 
 function SignUp() {
   //STATES
@@ -12,6 +14,9 @@ function SignUp() {
   });
   //-- error message state
   const [signUpErrorMessage, setSignUpErrorMessage] = useState('');
+
+  //REFS
+  const clickOnEnter = useRef();
 
   //ENDPOINTS
 
@@ -54,7 +59,7 @@ function SignUp() {
   const handleEnter = (e) => {
     if (e.keyCode === 13) {
       e.preventDefault();
-      document.getElementById('signup-submit').click();
+      clickOnEnter.click();
     }
   };
 
@@ -97,7 +102,7 @@ function SignUp() {
             onChange={handleNewUserChange}
             onKeyUp={handleEnter}
           />
-          <div id='signup-submit'>
+          <div ref={clickOnEnter} id='signup-submit'>
             <Button className='button btn-pink' text='Sign Up' />
           </div>
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import './App.css';
 
-//Pages
+//PAGES
 import SignUp from '../src/pages/SignUp';
 import GameWindow from './pages/GameWindow';
 import Shop from './pages/Shop';
@@ -10,9 +11,9 @@ import Arena from './pages/Arena';
 import Board from './pages/Board';
 import ProtectedRoute from './pages/ProtectedRoute';
 import PlayerDetail from './pages/PlayerDetail';
-import Spinner from './components/Spinner';
 
-import './App.css';
+//COMPONENTS
+import Spinner from './components/Spinner';
 
 export const AuthenticationContext = React.createContext();
 export const UserInfoContext = React.createContext();

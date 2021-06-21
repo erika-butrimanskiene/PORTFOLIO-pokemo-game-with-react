@@ -1,9 +1,10 @@
 import React from 'react';
+import './WeaponsForShop.css';
+
+//COMPONENTS
 import Weapon from './Weapon';
 
-import './Weapons.css';
-
-function Weapons() {
+function WeaponsForShop() {
   return (
     <div className='weapons-wrapper'>
       <h2 className='weapons-heading'>Weapons</h2>
@@ -53,4 +54,4 @@ function Weapons() {
   );
 }
 
-export default Weapons;
+export default WeaponsForShop;

@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
+import './ProfileEdintingForm.css';
+
+//CONTEXTS IMPORT
 import { UserInfoContext } from '../App';
+
+//COMPONENTS
 import Button from '../components/Button';
 import NewAvatar from './NewAvatar';
-
-import './ProfileEdintingForm.css';
 
 function ProfileEditingForm({ handleCloseEditModal }) {
   const avatarsList = [

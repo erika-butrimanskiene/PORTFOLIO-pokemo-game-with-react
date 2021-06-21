@@ -1,11 +1,14 @@
 import React, { useContext, useRef } from 'react';
+import nextId from 'react-id-generator';
+import './Weapon.css';
+
+//CONTEXTS IMPORT
 import { HandleShopContext } from '../pages/Shop';
 import { HandleSellContext } from '../pages/Inventory';
 import { SelectedInventoryContext } from '../pages/Arena';
-import nextId from 'react-id-generator';
-import Button from './Button';
 
-import './Weapon.css';
+//COMPONENTS
+import Button from './Button';
 
 function Weapon({
   name,

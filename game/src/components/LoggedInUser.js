@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
+import './LoggedInUser.css';
+
+//ICONS
 import { RiCoinsFill } from 'react-icons/ri';
 import { FiEdit } from 'react-icons/fi';
-import { SelectedInventoryContext } from '../pages/Arena';
-import ProgressBar from '../components/ProgressBar';
 
-import './LoggedInUser.css';
+//CONTEXTS IMPORT
+import { SelectedInventoryContext } from '../pages/Arena';
+
+//COMPONENTS
+import ProgressBar from '../components/ProgressBar';
 
 function LoggedInUser({
   image,

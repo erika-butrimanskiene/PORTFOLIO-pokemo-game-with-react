@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Inventory.css';
+
+//CONTEXTS IMPORT
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { UserInfoContext } from '../App';
 
+//COMPONENTS
 import InventoryList from '../components/InventoryList';
 import Modal from '../components/Modal';
-
-import './Inventory.css';
 
 export const HandleSellContext = React.createContext();
 
@@ -14,7 +16,6 @@ function Inventory() {
   //CONTEXTS
   //-- user
   const user = useContext(UserInfoContext);
-  console.log(user.userInfo);
 
   //STATES
   //-- sell msg

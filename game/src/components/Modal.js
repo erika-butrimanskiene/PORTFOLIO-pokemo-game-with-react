@@ -1,7 +1,9 @@
 import React from 'react';
+import './Modal.css';
+
+//COMPONENTS
 import InventoryList from './InventoryList';
 import ProfileEditingForm from './ProfileEditingForm';
-import './Modal.css';
 
 function Modal({
   handleCloseModal,

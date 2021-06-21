@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Player from './Player';
+
+//COMPONENTS
+import PlayerForLeadingBoard from './PlayerForLeadingBoard';
 
 function PlayersBoard() {
   //STATES
-  //-- plaeyrs
+  //-- players
   const [players, setPlayers] = useState([]);
 
   //EFFECTS
@@ -31,7 +33,7 @@ function PlayersBoard() {
       return a.gold > b.gold ? -1 : 1;
     })
     .map((player) => (
-      <Player
+      <PlayerForLeadingBoard
         image={player.image}
         username={player.username}
         gold={player.gold}

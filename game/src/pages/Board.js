@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
 import './Board.css';
+
+//ICONS
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+
+//COMPONENTS
 import PlayersBoard from '../components/PlayersBoard';
 
 function Board() {

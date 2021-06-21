@@ -1,13 +1,18 @@
 import React, { useState, useContext } from 'react';
-import { UserInfoContext } from '../App';
 import { Link } from 'react-router-dom';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import Armors from '../components/Armors';
-import Weapons from '../components/Weapons';
-import Potions from '../components/Potions';
-import Modal from '../components/Modal';
-
 import './Shop.css';
+
+//CONTEXTS IMPORT
+import { UserInfoContext } from '../App';
+
+//ICONS
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+
+//COMPONENTS
+import ArmorsForShop from '../components/ArmorsForShop';
+import WeaponsForShop from '../components/WeaponsForShop';
+import PotionsForShop from '../components/PotionsForShop';
+import Modal from '../components/Modal';
 
 export const HandleShopContext = React.createContext();
 
@@ -25,11 +30,9 @@ function Shop() {
     e.preventDefault();
     if (user.userInfo.gold >= price) {
       if (inventorItem.type !== 'potion') {
-        console.log('test');
         const find = user.userInfo.inventory.find(
           (item) => item.name === inventorItem.name
         );
-        console.log(find);
 
         if (find !== undefined) {
           setShopMsg('You already have this item at your inventory list.');
@@ -85,9 +88,9 @@ function Shop() {
         <h1 className='shop-window-heading'>SHOP</h1>
         <div className='shop-window'>
           <HandleShopContext.Provider value={{ addInventoryToUser }}>
-            <Armors />
-            <Weapons />
-            <Potions />
+            <ArmorsForShop />
+            <WeaponsForShop />
+            <PotionsForShop />
           </HandleShopContext.Provider>
         </div>
 

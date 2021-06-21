@@ -1,11 +1,14 @@
 import React, { useContext, useRef } from 'react';
+import nextId from 'react-id-generator';
+import './Armor.css';
+
+//CONTEXTS IMPORT
 import { HandleShopContext } from '../pages/Shop';
 import { HandleSellContext } from '../pages/Inventory';
 import { SelectedInventoryContext } from '../pages/Arena';
-import nextId from 'react-id-generator';
-import Button from './Button';
 
-import './Armor.css';
+//COMPONENTS
+import Button from './Button';
 
 function Armor({
   name,
@@ -20,18 +23,19 @@ function Armor({
   index,
 }) {
   //CONTEXTS
-  //--handle shop
+  //--handle buy
   const handleShop = useContext(HandleShopContext);
 
   //--handle sell
   const handleSell = useContext(HandleSellContext);
 
-  //--handle inventory to fight selection
+  //--handle inventory(armor) select to fight
   const handleInventorySelection = useContext(SelectedInventoryContext);
 
   //REFS
   const selectedStyle = useRef();
 
+  //ITEM TO ADD WHEN BUYING
   const inventorItem = {
     id: nextId(),
     name,
@@ -43,7 +47,6 @@ function Armor({
   };
 
   //FUNCTIONS
-  //-- handle inventory set
   const selectArmor = () => {
     handleInventorySelection.setSelectedArmor({ image, defence });
   };

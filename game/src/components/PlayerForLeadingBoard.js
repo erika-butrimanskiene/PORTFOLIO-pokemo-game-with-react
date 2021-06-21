@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { RiCoinsFill } from 'react-icons/ri';
 
-import './Player.css';
+import './PlayerForLeadingBoard.css';
 
-function Player({ image, username, gold }) {
+function PlayerForLeadingBoard({ image, username, gold }) {
   return (
     <div className='player'>
       <div className='player__avatar-username'>
@@ -32,4 +32,4 @@ function Player({ image, username, gold }) {
   );
 }
 
-export default Player;
+export default PlayerForLeadingBoard;

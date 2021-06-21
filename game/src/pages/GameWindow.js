@@ -1,7 +1,12 @@
 import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import './GameWindow.css';
+
+//CONTEXTS IMPORT
 import { UserInfoContext } from '../App';
 import { AuthenticationContext } from '../App';
-import { Link } from 'react-router-dom';
+
+//ICONS
 import { GiBattleGear } from 'react-icons/gi';
 import { GiBattleMech } from 'react-icons/gi';
 import { AiOutlineShop } from 'react-icons/ai';
@@ -9,10 +14,6 @@ import { BsClipboardData } from 'react-icons/bs';
 
 //COMPONENTS
 import Modal from '../components/Modal';
-
-import './GameWindow.css';
-
-//PAGES
 import LoggedInUser from '../components/LoggedInUser';
 
 function GameWindow() {

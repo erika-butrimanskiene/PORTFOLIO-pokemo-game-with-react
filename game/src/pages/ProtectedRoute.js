@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { Route } from 'react-router-dom';
 import { AuthenticationContext } from '../App';
-//Pages
+
+//PAGES
 import Login from './Login';
 
 function ProtectedRoute({ children, ...rest }) {

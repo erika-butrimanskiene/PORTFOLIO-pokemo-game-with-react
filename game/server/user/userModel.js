@@ -42,7 +42,7 @@ const UserSchema = new mongoose.Schema({
   ],
 });
 
-// Pass hashing
+// PASSWORD hashing
 UserSchema.pre('save', function (next) {
   let user = this;
   if (user.isModified('password') && user.isModified('passwordSecond')) {

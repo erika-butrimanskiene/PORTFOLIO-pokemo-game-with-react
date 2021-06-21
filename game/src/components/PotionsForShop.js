@@ -1,9 +1,10 @@
 import React from 'react';
-import Potion from '../components/Potion';
+import './PotionsForShop.css';
 
-import './Potions.css';
+//COMPONENTS
+import Potion from './Potion';
 
-function Potions() {
+function PotionsForShop() {
   return (
     <div className='potions-wrapper'>
       <h2 className='potions-heading'>Potions</h2>
@@ -46,4 +47,4 @@ function Potions() {
   );
 }
 
-export default Potions;
+export default PotionsForShop;

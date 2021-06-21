@@ -1,11 +1,14 @@
 import React, { useContext, useRef } from 'react';
+import './Potion.css';
+import nextId from 'react-id-generator';
+
+//CONTEXTS IMPORT
 import { HandleShopContext } from '../pages/Shop';
 import { HandleSellContext } from '../pages/Inventory';
 import { SelectedInventoryContext } from '../pages/Arena';
-import nextId from 'react-id-generator';
-import Button from './Button';
 
-import './Potion.css';
+//COMPONENTS
+import Button from './Button';
 
 function Potion({
   heals,
@@ -23,14 +26,24 @@ function Potion({
   const handleShop = useContext(HandleShopContext);
   //--handle sell
   const handleSell = useContext(HandleSellContext);
-  //--handle inventory to fight selection
+  //--handle inventory(potion) to fight selection
   const handleInventorySelection = useContext(SelectedInventoryContext);
 
   //REFS
   const selectedStyle = useRef();
 
+  //ITEM TO ADD WHEN BUYING
+  const inventorItem = {
+    id: nextId(),
+    type,
+    heals,
+    price,
+    sellprice,
+    image,
+  };
+
   //FUNCTIONS
-  //-- handle inventory set
+  //-- handle selected inventory(potion) use
   const usePotion = () => {
     handleInventorySelection.usePotion(heals, index);
   };
@@ -42,15 +55,6 @@ function Potion({
 
   const unselectPotionStyle = () => {
     selectedStyle.current.style.border = 'none';
-  };
-
-  const inventorItem = {
-    id: nextId(),
-    type,
-    heals,
-    price,
-    sellprice,
-    image,
   };
 
   return (

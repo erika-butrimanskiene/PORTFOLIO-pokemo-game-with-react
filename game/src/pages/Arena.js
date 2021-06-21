@@ -43,6 +43,14 @@ function Arena() {
   const [playerAnimationClass, setPlayerAnimationClass] = useState('');
   //-- enemy avatar animation class
   const [enemyAnimationClass, setEnemyAnimationClass] = useState('');
+  //-- enemy hit info
+  const [enemyHitInfo, setEnemyHitInfo] = useState({
+    defence: 0,
+    damage: 0,
+    gold: 0,
+  });
+  //-- player hit info
+  const [playerHitInfo, setPlayerHitInfo] = useState({ damageForEnemy: 0 });
 
   //EFFECTS
   useEffect(() => {
@@ -101,6 +109,7 @@ function Arena() {
 
   const handlePlayerHit = (playerHit, enemyHit) => {
     if (Object.keys(selectedWeapon).length !== 0) {
+      //ANIMATIONS
       setEnemyAnimationClass('arena-window__enemy-avatar-animation');
       setTimeout(() => setEnemyAnimationClass(''), 1000);
 
@@ -110,7 +119,9 @@ function Arena() {
       );
       setTimeout(() => setPlayerAnimationClass(''), 1500);
 
+      //player damage to enemy
       let playerDamage = playerHitDamage();
+      setPlayerHitInfo({ damageForEnemy: playerDamage });
       enemyHit.health = enemyHit.health - playerDamage;
       handleEnemyHit(playerHit, enemyHit);
     } else {
@@ -127,18 +138,24 @@ function Arena() {
       let specialHeal = specialPlayerHeal();
       let enemyDamage = enemyHitDamage(enemyHit);
 
+      setEnemyHitInfo({
+        defence: randomDefence,
+        damage: enemyDamage,
+        gold: randomAmountOfGold,
+      });
+
       //damage only if defence is smaller than enemy damage
       if (randomDefence - enemyDamage < 0) {
         playerHit.health =
           playerHit.health + specialHeal - enemyDamage + randomDefence;
+        if (playerHit.health > 100) {
+          playerHit.health = 100;
+        }
       }
       // gold to player
       playerHit.gold = playerHit.gold + randomAmountOfGold;
 
       if (playerHit.health > 0) {
-        if (playerHit.health > 100) {
-          playerHit.health = 100;
-        }
         await fetchToUpdateUser(playerHit);
         user.invokeGetUserFetch();
         setEnemyToPlay({ ...enemyHit });
@@ -146,7 +163,6 @@ function Arena() {
         setDeadMsg(
           'DEAD. Your health is restored to 100 and inventory list is emptied.'
         );
-
         playerHit.health = 100;
         playerHit.inventory = [];
         setSelectedArmor({});
@@ -327,6 +343,18 @@ function Arena() {
               deadMessageModal={true}
             />
           )}
+
+          <div className='arena-info'>
+            <div className='arena-info__player'>
+              Defence: <span>{enemyHitInfo.defence} </span>Damage:
+              <span>{enemyHitInfo.damage} </span> Gold:
+              <span>{enemyHitInfo.gold}</span>
+            </div>
+            <div className='arena-info__enemy'>
+              Damage:
+              <span>{playerHitInfo.damageForEnemy} </span>
+            </div>
+          </div>
         </div>
       </SelectedInventoryContext.Provider>
     </main>

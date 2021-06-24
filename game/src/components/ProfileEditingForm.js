@@ -39,7 +39,7 @@ function ProfileEditingForm({ handleCloseEditModal }) {
   };
 
   const updateProfile = async () => {
-    const URL = `http://localhost:5000/user/${user.userInfo._id}`;
+    const URL = `https://pokemo-game.herokuapp.com/user/${user.userInfo._id}`;
     const token = localStorage.getItem('game-auth');
     const updateUser = async () => {
       const response = await fetch(URL, {
@@ -66,7 +66,7 @@ function ProfileEditingForm({ handleCloseEditModal }) {
       <div
         className='edit-profile-form__player-avatar'
         style={{
-          backgroundImage: `url(http://localhost:5000/uploads/${user.userInfo.image})`,
+          backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${user.userInfo.image})`,
         }}
       ></div>
       <label

@@ -69,6 +69,16 @@
   font-size: 1.5em;
 }
 
+.icons-copyrights {
+  padding-top: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.icons-copyrights a {
+  color: var(--second-color);
+}
+
 @media screen and (min-width: 768px) {
   .game-window-wrapper {
     height: 100vh;

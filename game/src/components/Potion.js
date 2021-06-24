@@ -69,7 +69,7 @@ function Potion({
           ref={selectedStyle}
           className='potion__icon'
           style={{
-            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+            backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
           }}
         ></div>
         <div className='potion__info-container'>

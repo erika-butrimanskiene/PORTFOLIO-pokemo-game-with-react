@@ -11,7 +11,7 @@ function PlayersBoard() {
   //EFFECTS
   //-- to set players
   useEffect(() => {
-    const URL = 'http://localhost:5000/users';
+    const URL = 'https://pokemo-game.herokuapp.com/users';
 
     const getUsers = async () => {
       const response = await fetch(URL, {

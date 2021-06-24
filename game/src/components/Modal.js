@@ -27,7 +27,7 @@ function Modal({
           <div
             className='arena-window__dead-img'
             style={{
-              backgroundImage: `url(http://localhost:5000/uploads/rip.png)`,
+              backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/rip.png)`,
             }}
           ></div>
         )}

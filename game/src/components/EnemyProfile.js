@@ -12,7 +12,7 @@ function EnemyProfile({ image, enemyname, health, enemyAnimationClass }) {
           <div
             className={`arena-window__enemy-avatar ${enemyAnimationClass}`}
             style={{
-              backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+              backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
             }}
           ></div>
         )}

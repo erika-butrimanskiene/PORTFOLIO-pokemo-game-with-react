@@ -27,7 +27,7 @@ function GameWindow() {
   const [editMsg, setEditMsg] = useState('');
 
   //ENDPOINTS
-  const URL = 'http://localhost:5000/user/logout';
+  const URL = 'https://pokemo-game.herokuapp.com/user/logout';
 
   //FUNCTIONS
   //-- handle user logout
@@ -104,6 +104,17 @@ function GameWindow() {
             </div>
           </div>
         </div>
+
+        <p className='icons-copyrights'>
+          Icons made by{' '}
+          <a
+            href='https://www.flaticon.com/authors/darius-dan'
+            title='Darius Dan'
+          >
+            Darius Dan
+          </a>{' '}
+          and <a href='https://icons8.com/'>Icons8</a>
+        </p>
 
         {editMsg !== '' && (
           <Modal

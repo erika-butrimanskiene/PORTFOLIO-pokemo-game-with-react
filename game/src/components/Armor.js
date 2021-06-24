@@ -72,7 +72,7 @@ function Armor({
           ref={selectedStyle}
           className='armor__icon'
           style={{
-            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+            backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
           }}
         ></div>
         <div className='armor__info-container'>

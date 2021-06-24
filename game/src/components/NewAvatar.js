@@ -6,7 +6,7 @@ function NewAvatar({ setNewAvatar, img, activeClass }) {
       <div
         className={`edit-profile-form__new-avatar ${activeClass}`}
         style={{
-          backgroundImage: `url(http://localhost:5000/uploads/${img})`,
+          backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${img})`,
         }}
         onClick={setNewAvatar}
       ></div>

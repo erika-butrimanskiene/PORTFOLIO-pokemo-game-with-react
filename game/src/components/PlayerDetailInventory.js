@@ -13,7 +13,7 @@ function PlayerDetailInventory({ player }) {
               <div
                 className='player-detail__inventory-icon'
                 style={{
-                  backgroundImage: `url(http://localhost:5000/uploads/${inventoryItem.image})`,
+                  backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${inventoryItem.image})`,
                 }}
               ></div>
               <div className='player-detail__inventory-info-container'>

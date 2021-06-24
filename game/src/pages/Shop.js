@@ -53,7 +53,7 @@ function Shop() {
 
   //-- fetch to update user
   const fetchToUpdateUser = async (id, price, inventorItem) => {
-    const URL = `http://localhost:5000/user/${id}`;
+    const URL = `https://pokemo-game.herokuapp.com/user/${id}`;
     const token = localStorage.getItem('game-auth');
     const updateUser = async () => {
       const response = await fetch(URL, {

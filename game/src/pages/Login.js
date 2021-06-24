@@ -21,7 +21,7 @@ function Login() {
   const auth = useContext(AuthenticationContext);
 
   //ENDPOINTS
-  const URL = 'http://localhost:5000/user/login';
+  const URL = 'https://pokemo-game.herokuapp.com/user/login';
 
   //FUNCTIONS
   //-- to handle login

@@ -20,7 +20,7 @@ function SignUp() {
 
   //ENDPOINTS
 
-  const URL = 'http://localhost:5000/user/signup';
+  const URL = 'https://pokemo-game.herokuapp.com/user/signup';
 
   //FUNCTIONS
   //-- handle newUser change

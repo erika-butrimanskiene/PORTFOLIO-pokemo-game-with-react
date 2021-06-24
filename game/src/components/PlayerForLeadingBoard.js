@@ -11,7 +11,7 @@ function PlayerForLeadingBoard({ image, username, gold }) {
         <div
           className='player__avatar'
           style={{
-            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+            backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
           }}
         ></div>
         <div className='player__username'>

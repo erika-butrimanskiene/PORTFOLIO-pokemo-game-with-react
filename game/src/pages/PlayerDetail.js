@@ -25,7 +25,7 @@ function PlayerDetail() {
   //-- to set player
 
   useEffect(() => {
-    const URL = `http://localhost:5000/users/${username}`;
+    const URL = `https://pokemo-game.herokuapp.com/users/${username}`;
     const getUserByUsername = async () => {
       const response = await fetch(URL, {
         method: 'GET',
@@ -57,7 +57,7 @@ function PlayerDetail() {
                     <div
                       className='player-detail__avatar'
                       style={{
-                        backgroundImage: `url(http://localhost:5000/uploads/${player.image})`,
+                        backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${player.image})`,
                       }}
                     ></div>
                   }

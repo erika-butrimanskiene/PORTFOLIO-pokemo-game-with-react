@@ -32,7 +32,7 @@ function Inventory() {
 
   //-- fetch to update user
   const fetchToUpdateUser = async (id, sellprice, index) => {
-    const URL = `http://localhost:5000/user/${id}`;
+    const URL = `https://pokemo-game.herokuapp.com/user/${id}`;
     const token = localStorage.getItem('game-auth');
 
     user.userInfo.inventory.splice(index, 1);

@@ -53,7 +53,7 @@ function LoggedInUser({
                   : 'game-window__player-avatar'
               }
               style={{
-                backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+                backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
               }}
             ></div>
           )}
@@ -66,7 +66,7 @@ function LoggedInUser({
               <div
                 className='arena-window__player-inventor'
                 style={{
-                  backgroundImage: `url(http://localhost:5000/uploads/${selectedInventory.selectedWeapon.image})`,
+                  backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${selectedInventory.selectedWeapon.image})`,
                 }}
               ></div>
             )}
@@ -74,7 +74,7 @@ function LoggedInUser({
               <div
                 className='arena-window__player-inventor'
                 style={{
-                  backgroundImage: `url(http://localhost:5000/uploads/${selectedInventory.selectedArmor.image})`,
+                  backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${selectedInventory.selectedArmor.image})`,
                 }}
               ></div>
             )}

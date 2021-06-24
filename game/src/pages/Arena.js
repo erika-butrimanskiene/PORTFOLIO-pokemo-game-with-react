@@ -239,7 +239,7 @@ function Arena() {
 
   //-- fetch to update user
   const fetchToUpdateUser = async (userToFetch) => {
-    const URL = `http://localhost:5000/user/${user.userInfo._id}`;
+    const URL = `https://pokemo-game.herokuapp.com/user/${user.userInfo._id}`;
     const token = localStorage.getItem('game-auth');
     const updateUser = async () => {
       const response = await fetch(URL, {

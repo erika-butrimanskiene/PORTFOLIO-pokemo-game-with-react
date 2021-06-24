@@ -73,7 +73,7 @@ function Weapon({
           ref={selectedStyle}
           className='weapon__icon'
           style={{
-            backgroundImage: `url(http://localhost:5000/uploads/${image})`,
+            backgroundImage: `url(https://pokemo-game.herokuapp.com/uploads/${image})`,
           }}
         ></div>
         <div className='weapon__info-container'>

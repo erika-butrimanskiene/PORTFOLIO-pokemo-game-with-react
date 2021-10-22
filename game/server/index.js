@@ -17,7 +17,7 @@ app.use('/', routes);
 app.use('/uploads', express.static('uploads'));
 
 const DB_URI =
-  'mongodb+srv://deleted:deleted@cluster0.fp6i4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+  'mongodb+srv://erikaB:erikaB@cluster0.fp6i4.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 //Database
 mongoose

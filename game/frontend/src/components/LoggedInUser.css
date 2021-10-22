@@ -8,10 +8,16 @@
 }
 
 .game-window__edit-profile {
+  display: flex;
+  align-items: center;
   padding-top: 20px;
   padding-left: 25px;
   width: 100%;
   color: white;
+}
+
+.game-window__edit-profile span {
+  padding-left: 10px;
 }
 
 .game-window__player-details {

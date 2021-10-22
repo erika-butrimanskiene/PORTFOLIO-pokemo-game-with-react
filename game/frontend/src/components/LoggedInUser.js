@@ -35,7 +35,7 @@ function LoggedInUser({
       >
         {!isArena && (
           <div className='game-window__edit-profile'>
-            <FiEdit size={30} onClick={editClick} />
+            <FiEdit size={30} onClick={editClick} /> <span>Edit</span>
           </div>
         )}
         <div
